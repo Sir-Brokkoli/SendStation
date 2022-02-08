@@ -1,0 +1,92 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>399</x><y>234</y><w>140</w><h>130</h></coordinates><panel_attributes>Climber
+--
+- id : int
+- nickname : string
+- email : string
+- passwordHash : string
+- description : string
+- registrationDate : date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>399</x><y>374</y><w>140</w><h>80</h></coordinates><panel_attributes>Crag
+--
+id : int
+name : string
+description : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>399</x><y>464</y><w>140</w><h>110</h></coordinates><panel_attributes>Route
+--
+id : int
+cragId : int
+name : string
+grade : char(3)
+description : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>399</x><y>584</y><w>140</w><h>120</h></coordinates><panel_attributes>Session
+--
+id : int
+id_climber : int
+id_crag : int
+date : date
+isEco : bool
+registrationData : date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>399</x><y>714</y><w>140</w><h>110</h></coordinates><panel_attributes>ActiveSession
+--
+id : int
+climberId : int
+cragId : int
+isEco : int
+registrationDate : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>399</x><y>834</y><w>140</w><h>120</h></coordinates><panel_attributes>Go
+--
+id : int
+sessionId : int
+routeId : int
+falls : int
+send : bool
+toprope : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>749</x><y>97</y><w>310</w><h>110</h></coordinates><panel_attributes>Database
+--
+getClimbersDataGateway() : ClimbersDataGateway
+getCragsDataGateway() : CragsDataGateway
+getRoutesDataGateway() : RoutesDataGateway
+getSessionsDataGateway() : SessionsDataGateway
+getGoesDataGateway() : GoesDataGateway</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>307</y><w>330</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;20;250;20;250;10;270;20;310;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>849</x><y>257</y><w>320</w><h>90</h></coordinates><panel_attributes>ClimbersDataGateway
+--
++ findAll() : Climber[]
+# insertEntry(Climber climber) : bool
+# updateEntry(Climber climber) : bool
+- getClimbersFromData(sqlData climbersData) : Climber[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>849</x><y>367</y><w>320</w><h>90</h></coordinates><panel_attributes>CragsDataGateway
+--
++ findAll() : Crag[]
+# insertEntry(Crag crag) : bool
+# updateEntry(Crag crag) : bool
+- getCragsFromData(sqlData cragsData) : Crag[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>849</x><y>477</y><w>320</w><h>110</h></coordinates><panel_attributes>RoutesDataGateway
+--
++ findAll() : Route[]
++ findRoutesInCrag(Crag crag) : Route[]
+# insertEntry(Route route) : bool
+# updateEntry(Route route) : bool
+- getRoutesFromData(sqlData routesData) : Route[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>849</x><y>607</y><w>320</w><h>90</h></coordinates><panel_attributes>SessionsDataGateway
+--
++ findAll() : Session[]
+# insertEntry(Session session) : bool
+# updateEntry(Session session) : bool
+- getSessionsFromData(sqlData sessionsData) : Session[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>849</x><y>717</y><w>320</w><h>70</h></coordinates><panel_attributes>GoesDataGateway
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1279</x><y>397</y><w>240</w><h>240</h></coordinates><panel_attributes>&lt;&lt;Abstract&gt;&gt;
+/DataGateway/
+--
+- connection : mysqlConnection
+- tableName : string
+--
+/# updateEntry(entry) : void/
+/# insertEntry(entry) : void/
+
+# getTableName() : string
+
+_+ saveEntry(entry) : bool_
+_+ deleteEntry(entry) : bool_
++ findAll() : Array(string -&gt; string)
+_+ deleteAll() : bool_
+_# executeSQL(sql, &amp;out, ... params) : bool_</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>297</y><w>140</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;220;60;220;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>407</y><w>140</w><h>130</h></coordinates><panel_attributes></panel_attributes><additional_attributes>120;110;60;110;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>507</y><w>140</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;60;10;60;140;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>507</y><w>140</w><h>280</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;60;10;60;260;10;260</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>507</y><w>140</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>196</y><w>90</w><h>480</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>70;460;10;460;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>196</y><w>90</w><h>360</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;340;10;340;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>196</y><w>90</w><h>580</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;560;10;560;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>196</y><w>90</w><h>240</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;220;10;220;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>196</y><w>90</w><h>130</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;110;10;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1279</x><y>140</y><w>240</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Singleton&gt;&gt;
+MysqlConnection
+--
+- connection : mysqli
+- instance : MysqlConnection &lt;&lt;static&gt;&gt;
+--
++ getInstance() : mysqli &lt;&lt;static&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1390</x><y>246</y><w>30</w><h>170</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>137</y><w>100</w><h>60</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+IDrawable
+--
++ Draw() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>417</y><w>330</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;20;250;20;250;10;270;20;310;20</additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>537</y><w>330</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;20;250;20;250;10;270;20;310;20</additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>657</y><w>330</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;20;250;20;250;10;270;20;310;20</additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>767</y><w>330</w><h>160</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;140;180;140;180;10;310;10</additional_attributes></element></diagram>
