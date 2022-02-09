@@ -1,5 +1,4 @@
-<?php
-namespace Sendstation\UI;
+<?php namespace Sendstation\UI;
 
 interface IDrawable {
     public function draw();

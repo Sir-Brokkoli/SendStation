@@ -1,11 +1,8 @@
-<?php
-namespace Sendstation;
+<?php namespace Sendstation;
+
+require_once 'Database.class.php';
 
 use Sendstation\Database\Database;
-
-require_once 'Crag.class.php';
-require_once 'Route.class.php';
-require_once 'Database.class.php';
 
 class CragHandler{
     

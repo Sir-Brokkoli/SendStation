@@ -1,12 +1,11 @@
-<?php
-namespace Sendstation;
-
+<?php namespace Sendstation;
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
-use Sendstation\UI\CragCard;
 
 require_once 'Classes/CragHandler.class.php';
-require_once 'Classes/CragCard.class.php';
+require_once 'Classes/UI/CragCard.class.php';
+
+use Sendstation\UI\CragCard;
 
 $crags = CragHandler::getCrags();
 

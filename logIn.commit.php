@@ -6,7 +6,7 @@ use Sendstation\Authentication\UserService;
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/UserService.class.php');
+require_once('Classes/Authentication/UserService.class.php');
 
 session_start();
 

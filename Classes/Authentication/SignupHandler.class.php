@@ -1,19 +1,18 @@
-<?php
-namespace Sendstation\Authentication;
+<?php namespace Sendstation\Authentication;
 
-use Sendstation\Database\Database;
-use Sendstation\Climber;
-
-require_once 'Database.class.php';
+require_once 'Classes/Database.class.php';
 require_once 'IUserServiceRequestHandler.class.php';
 require_once 'LoginHandler.class.php';
+
+use Sendstation\Database\Database;
+use Sendstation\Model\Climber;
 
 class SignupHandler implements IUserServiceRequestHandler {
 
     public static function processRequest($request){
         
         $userDataGateway = Database::getClimbersDataGateway();
-        echo "HERE!";
+
         if($userDataGateway->findByEmail($request->getEmail()) != null){
             // TODO: Implement Email-already-taken response
             return false;

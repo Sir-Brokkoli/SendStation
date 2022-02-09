@@ -1,11 +1,10 @@
-<?php
-namespace Sendstation\Database;
-
-use Sendstation\Crag;
+<?php namespace Sendstation\Database;
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Crag.class.php';
+include_once 'Classes/Model/Crag.class.php';
+
+use Sendstation\Model\Crag;
 
 class CragsDataGateway extends DataGateway {
 

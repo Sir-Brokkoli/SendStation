@@ -1,11 +1,10 @@
-<?php
-namespace Sendstation\Database;
-
-use Sendstation\Climber;
+<?php namespace Sendstation\Database;
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Climber.class.php';
+include_once 'Classes/Model/Climber.class.php';
+
+use Sendstation\Model\Climber;
 
 class ClimbersDataGateway extends DataGateway {
 

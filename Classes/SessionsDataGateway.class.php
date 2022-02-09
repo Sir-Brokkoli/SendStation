@@ -1,11 +1,10 @@
-<?php
-namespace Sendstation\Database;
-
-use Sendstation\Session;
+<?php namespace Sendstation\Database;
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Session.class.php';
+include_once 'Classes/Model/Session.class.php';
+
+use Sendstation\Model\Session;
 
 class SessionsDataGateway extends DataGateway {
 

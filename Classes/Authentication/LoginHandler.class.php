@@ -3,7 +3,7 @@ namespace Sendstation\Authentication;
 
 use Sendstation\Database\Database;
 
-require_once 'Database.class.php';
+require_once 'Classes/Database.class.php';
 require_once 'IUserServiceRequestHandler.class.php';
 
 class LoginHandler implements IUserServiceRequestHandler {

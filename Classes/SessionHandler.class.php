@@ -1,12 +1,12 @@
-<?php
-namespace Sendstation;
+<?php namespace Sendstation;
+
+require_once 'Classes/Model/Session.class.php';
+require_once 'Classes/Model/Go.class.php';
+require_once 'Database.class.php';
 
 use Sendstation\Database\Database;
-use Sendstation\Session;
-
-require_once 'Session.class.php';
-require_once 'Go.class.php';
-require_once 'Database.class.php';
+use Sendstation\Model\Session;
+use Sendstation\Model\Go;
 
 class SessionHandler {
 

@@ -1,5 +1,6 @@
-<?php
-namespace Sendstation;
+<?php namespace Sendstation\Model;
+
+use Sendstation\Database\ISerializable;
 
 /**
  * The entity representing the data of a go during a session.

@@ -1,11 +1,10 @@
-<?php
-namespace Sendstation\Database;
-
-use Sendstation\Route;
+<?php namespace Sendstation\Database;
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Route.class.php';
+include_once 'Classes/Model/Route.class.php';
+
+use Sendstation\Model\Route;
 
 class RoutesDataGateway extends DataGateway{
 

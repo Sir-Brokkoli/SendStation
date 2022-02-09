@@ -1,5 +1,4 @@
-<?php
-namespace Sendstation\UI;
+<?php namespace Sendstation\UI;
 
 include_once 'IDrawable.php';
 

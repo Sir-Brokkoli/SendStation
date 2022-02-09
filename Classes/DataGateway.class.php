@@ -1,5 +1,4 @@
-<?php
-namespace Sendstation\Database;
+<?php namespace Sendstation\Database;
 
 abstract class DataGateway {
 
@@ -21,10 +20,13 @@ abstract class DataGateway {
     }
 
     public final function saveEntry($entry){
+
         if($entry->getId() !== null){
+
             return $this->updateEntry($entry);
         }
         else{
+
             return $this->insertEntry($entry);
         }
     }
@@ -37,7 +39,10 @@ abstract class DataGateway {
 
             return $success;
         }
-        catch (\mysql_sql_exception $e) { }
+        catch (\mysql_sql_exception $e) { 
+
+            return false;
+         }
     }
 
     public function findEntryById($id){
@@ -45,25 +50,32 @@ abstract class DataGateway {
 
         try{
             if($this->executeSQL($sql, $data, $id)){
+
                 return $data;
             }
-            else return false;
         }
-        catch (\mysql_sql_exception $e) { }
+        catch (\mysql_sql_exception $e) { 
+            
+            return false; 
+        }
+
+        return false;
     }
 
     public function findAll(){
         try{
             $sql = "SELECT * FROM " . $this->getTableName();
             if($this->executeSQL($sql, $data)){
+
                 return $data;
             }
-
-            return false;
         }
         catch (\mysql_sql_exception $e){
 
+            return false;
         }
+
+        return false;
     }
 
     public final function deleteAll(){
@@ -73,7 +85,10 @@ abstract class DataGateway {
 
             return $success;
         }
-        catch (\mysql_sql_exception $e) {}
+        catch (\mysql_sql_exception $e) {
+
+            return false;
+        }
     }
 
     //

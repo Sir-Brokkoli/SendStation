@@ -1,5 +1,4 @@
-<?php
-namespace Sendstation;
+<?php namespace Sendstation\Model;
 
 /**
  * The entity representing a climber registered in the competition.

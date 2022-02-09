@@ -1,11 +1,10 @@
-<?php
-namespace Sendstation\Database;
-
-use Sendstation\Go;
+<?php namespace Sendstation\Database;
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Go.class.php';
+include_once 'Classes/Model/Go.class.php';
+
+use Sendstation\Model\Go;
 
 class GoesDataGateway extends DataGateway {
 

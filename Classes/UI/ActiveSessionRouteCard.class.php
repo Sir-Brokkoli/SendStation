@@ -1,10 +1,9 @@
-<?php 
-namespace Sendstation\UI;
-
-use Sendstation\Route;
+<?php namespace Sendstation\UI;
 
 include_once 'IDrawable.php';
-include_once 'Route.class.php';
+include_once 'Classes/Model/Route.class.php';
+
+use Sendstation\Model\Route;
 
 class ActiveSessionRouteCard implements IDrawable{
 

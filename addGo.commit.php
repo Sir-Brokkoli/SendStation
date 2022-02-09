@@ -1,14 +1,13 @@
-<?php
-namespace Sendstation;
-
-use Sendstation\Debugging\DEBUG;
+<?php namespace Sendstation;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 require_once('Classes/SessionHandler.class.php');
-include_once('Classes/Go.class.php');
+include_once('Classes/Model/Go.class.php');
 include_once('DEBUG/DEBUG.php');
+
+use Sendstation\Debugging\DEBUG;
 
 session_start();
 
