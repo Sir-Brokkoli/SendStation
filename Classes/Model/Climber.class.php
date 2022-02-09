@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Model;
 
+include_once 'Classes/Database/ISerializable.class.php';
+
+use Sendstation\Database\ISerializable;
+
 /**
  * The entity representing a climber registered in the competition.
  */
-class Climber {
+class Climber implements ISerializable {
 
     private $id;
     private $nickname;
@@ -19,6 +23,17 @@ class Climber {
         $this->email = $email;
         $this->passwordHash = $passwordHash;
         $this->registrationDate = $registrationDate;
+    }
+
+    public function serialize() : array {
+
+        // TODO: Implementation
+        return array();
+    }
+
+    public function deserialize(array $data) {
+
+        // TODO: Implementation
     }
 
     public function getId(){

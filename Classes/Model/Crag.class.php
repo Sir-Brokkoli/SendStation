@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Model;
 
+include_once 'Classes/Database/ISerializable.class.php';
+
+use Sendstation\Database\ISerializable;
+
 /**
  * The entity representing a crag.
  */
-class Crag {
+class Crag implements ISerializable {
 
     private $id;
     private $name;
@@ -13,6 +17,17 @@ class Crag {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
+    }
+
+    public function serialize() : array {
+
+        // TODO: Implementation
+        return array();
+    }
+
+    public function deserialize(array $data) {
+
+        // TODO: Implementation
     }
 
     public function getId(){

@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Model;
 
+include_once 'Classes/Database/ISerializable.class.php';
+
+use Sendstation\Database\ISerializable;
+
 /**
  * The entity representing a climbing session.
  */
-class Session {
+class Session implements ISerializable {
 
     private $id;
     private $climberId;
@@ -30,6 +34,17 @@ class Session {
         $this->isEco = $isEco;
         $this->registrationDate = $registrationDate;
         $this->isActive = $isActive;
+    }
+
+    public function serialize() : array {
+
+        // TODO: Implementation
+        return array();
+    }
+
+    public function deserialize(array $data) {
+
+        // TODO: Implementation
     }
 
     public function getId(){

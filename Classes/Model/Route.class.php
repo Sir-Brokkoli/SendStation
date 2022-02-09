@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Model;
 
+include_once 'Classes/Database/ISerializable.class.php';
+
+use Sendstation\Database\ISerializable;
+
 /**
  * The entity representing a climbing route.
  */
-class Route {
+class Route implements ISerializable {
     
     private $id;
     private $name;
@@ -17,6 +21,17 @@ class Route {
         $this->cragId = $cragId;
         $this->grade = $grade;
         $this->description = $description;
+    }
+
+    public function serialize() : array {
+
+        // TODO: Implementation
+        return array();
+    }
+
+    public function deserialize(array $data) {
+
+        // TODO: Implementation
     }
 
     public function getId(){

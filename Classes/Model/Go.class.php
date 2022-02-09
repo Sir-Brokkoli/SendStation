@@ -1,11 +1,13 @@
 <?php namespace Sendstation\Model;
 
+include_once 'Classes/Database/ISerializable.class.php';
+
 use Sendstation\Database\ISerializable;
 
 /**
  * The entity representing the data of a go during a session.
  */
-class Go {
+class Go implements ISerializable {
 
     private $id;
     private $sessionId;
@@ -25,6 +27,17 @@ class Go {
         $this->falls = $falls;
         $this->send = $send;
         $this->toprope = $toprope;
+    }
+
+    public function serialize() : array {
+
+        // TODO: Implementation
+        return array();
+    }
+
+    public function deserialize(array $data) {
+
+        // TODO: Implementation
     }
 
     public function getId(){
