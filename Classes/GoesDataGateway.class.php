@@ -33,6 +33,11 @@ class GoesDataGateway extends DataGateway {
         catch (\mysql_sql_exception $e) { }
     }
 
+    public function getScheme() : array {
+
+        return Go::getSerializationScheme();
+    }
+
     public function findAll(){
         $goesData = parent::findAll();
 

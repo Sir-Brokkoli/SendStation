@@ -8,6 +8,8 @@ use Sendstation\Database\ISerializable;
  * The entity representing a climbing route.
  */
 class Route implements ISerializable {
+
+    private static $serializationScheme = ["id", "id_crag", "name", "grade", "description"];
     
     private $id;
     private $name;
@@ -25,13 +27,25 @@ class Route implements ISerializable {
 
     public function serialize() : array {
 
-        // TODO: Implementation
-        return array();
+        return array(self::$serializationScheme[0] => $this->id,
+                    self::$serializationScheme[1] => $this->cragId,
+                    self::$serializationScheme[2] => $this->name,
+                    self::$serializationScheme[3] => $this->grade,
+                    self::$serializationScheme[4] => $this->description);
     }
 
     public function deserialize(array $data) {
 
-        // TODO: Implementation
+        $this->id = $data[self::$serializationScheme[0]];
+        $this->cragId = $data[self::$serializationScheme[1]];
+        $this->name = $data[self::$serializationScheme[2]];
+        $this->grade = $data[self::$serializationScheme[3]];
+        $this->description = $data[self::$serializationScheme[4]];
+    }
+
+    public static function getSerializationScheme() : array {
+
+        return self::$serializationScheme;
     }
 
     public function getId(){

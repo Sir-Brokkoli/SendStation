@@ -7,5 +7,6 @@ interface ISerializable {
 
     public function serialize() : array;
     public function deserialize(array $data);
+    public static function getSerializationScheme() : array;
 }
 ?>

@@ -28,6 +28,11 @@ class CragsDataGateway extends DataGateway {
         catch (\mysql_sql_exception $e) { }
     }
 
+    public function getScheme() : array {
+
+        return Crag::getSerializationScheme();
+    }
+
     public function findEntryById($id){
         $cragData = parent::findEntryById($id)->fetch_assoc();
         return new Crag($cragData['id'], $cragData['name'], $cragData['description']);

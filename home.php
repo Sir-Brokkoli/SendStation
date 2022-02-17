@@ -92,9 +92,9 @@ require_once('Classes/CragHandler.class.php');
                     </div>
                     <div class="form-group mb-3">
                         <label for="#inputEco" class="h6">
-                            <input type="checkbox"  name="eco" id="inputEco">
                             Eco-friendly (bike, public transport)
                         </label>
+                        <input type="checkbox"  name="eco" id="inputEco">
                     </div>
                 </div>
                 <div class="modal-footer">

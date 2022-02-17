@@ -31,6 +31,11 @@ class RoutesDataGateway extends DataGateway{
         catch (\mysql_sql_exception $e) { }
     }
 
+    public function getScheme() : array {
+
+        return Route::getSerializationScheme();
+    }
+
     public function findAll(){
         $routesData = parent::findAll();
 

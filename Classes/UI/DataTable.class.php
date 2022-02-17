@@ -24,19 +24,20 @@ class DataTable implements IDrawable {
 
             echo "<th class=\"text-light\" scope=\"col\">" . $col . "</th>";
         }
-        echo "<th class=\"text-light\" scope=\"col\">Edit</th>";
+        echo "<th class=\"text-light\" scope=\"col\">Controls</th>";
         echo "</tr></thead>";
         echo "<tbody>";
 
         while ($this->tableController->hasNext()) {
 
-            $row = $this->tableController->nextRow();
+            $row = $this->tableController->getNextRow();
 
             echo "<tr>";
             foreach ($columnScheme as $col) {
 
                 echo "<td>" . $row[$col] . "</td>";
             }
+            echo "<td><button>Edit</button><button>Delete</button></td>";
             echo "</tr>";
         }
         

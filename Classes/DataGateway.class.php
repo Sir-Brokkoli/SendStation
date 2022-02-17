@@ -11,6 +11,7 @@ abstract class DataGateway {
     }
 
     public abstract function initializeTable();
+    public abstract function getScheme() : array;
 
     protected abstract function updateEntry($entry);
     protected abstract function insertEntry($entry);

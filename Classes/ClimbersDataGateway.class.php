@@ -30,6 +30,11 @@ class ClimbersDataGateway extends DataGateway {
         catch (\mysql_sql_exception $e) { }
     }
 
+    public function getScheme() : array {
+
+        return Climber::getSerializationScheme();
+    }
+
     public function findAll(){
         $climbersData = parent::findAll();
 

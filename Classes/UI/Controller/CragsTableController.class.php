@@ -13,30 +13,32 @@ class CragsTableController implements IDataTableController {
     private int $page;
 
     private $data;
+    private $cursor;
 
-    private $cragsDataGateway = null;
+    private $dataGateway = null;
 
     public function __construct($page) {
 
         $this->page = $page;
 
-        $this->cragsDataGateway = Database::getCragsDataGateway();
-        $this->data = $this->cragsDataGateway->findAll();
+        $this->dataGateway = Database::getCragsDataGateway();
+        $this->data = $this->dataGateway->findAll();
+        $this->cursor = 0;
     }
 
     public function getScheme() : array {
 
-        return self::$scheme;
+        return $this->dataGateway->getScheme();
     }
 
     public function hasNext() : bool {
 
-        return false;
+        return $this->cursor < count($this->data);
     }
 
     public function getNextRow() : array {
 
-        return null;
+        return $this->data[$this->cursor++]->serialize();
     }
 }
 

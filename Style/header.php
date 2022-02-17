@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navmenu"> 
                     <ul class="navbar-nav ms-auto">
                         <?php
-                        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                             echo "<li class=\"nav-item\"><a href=\"home.php\" class=\"nav-link\">" . $_SESSION['nickname'] . "</a></li>";
                         }
                         else{
@@ -45,7 +45,7 @@
                             <a href="contact.php" class="nav-link">Contact</a>
                         </li>
                         <?php
-                        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                             echo "<li class=\"nav-item\"><a href=\"logOut.commit.php\" class=\"nav-link\">Log Out</a></li>";
                         }
                         else{

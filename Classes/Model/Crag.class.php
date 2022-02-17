@@ -9,6 +9,8 @@ use Sendstation\Database\ISerializable;
  */
 class Crag implements ISerializable {
 
+    private static $serializationScheme = ["id", "name", "description"];
+
     private $id;
     private $name;
     private $description;
@@ -21,13 +23,21 @@ class Crag implements ISerializable {
 
     public function serialize() : array {
 
-        // TODO: Implementation
-        return array();
+        return array(self::$serializationScheme[0] => $this->id, 
+                    self::$serializationScheme[1] => $this->name, 
+                    self::$serializationScheme[2] => $this->description);
     }
 
     public function deserialize(array $data) {
 
-        // TODO: Implementation
+        $this->id = $data[self::$serializationScheme[0]];
+        $this->name = $data[self::$serializationScheme[1]];
+        $this->description = $data[self::$serializationScheme[2]];
+    }
+
+    public static function getSerializationScheme() : array {
+
+        return self::$serializationScheme;
     }
 
     public function getId(){

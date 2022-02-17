@@ -9,6 +9,8 @@ use Sendstation\Database\ISerializable;
  */
 class Go implements ISerializable {
 
+    private static $serializationScheme = ["id", "id_session", "id_route", "falls", "send", "toprope"];
+
     private $id;
     private $sessionId;
     private $routeId;
@@ -38,6 +40,11 @@ class Go implements ISerializable {
     public function deserialize(array $data) {
 
         // TODO: Implementation
+    }
+
+    public static function getSerializationScheme() : array {
+
+        return self::$serializationScheme;
     }
 
     public function getId(){

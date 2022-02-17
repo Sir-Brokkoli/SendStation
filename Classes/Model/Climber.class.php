@@ -9,6 +9,8 @@ use Sendstation\Database\ISerializable;
  */
 class Climber implements ISerializable {
 
+    private static $serializationScheme = ["id", "nickname", "email", "password", "reg_date"];
+
     private $id;
     private $nickname;
     private $email;
@@ -34,6 +36,11 @@ class Climber implements ISerializable {
     public function deserialize(array $data) {
 
         // TODO: Implementation
+    }
+
+    public static function getSerializationScheme() : array {
+
+        return self::$serializationScheme;
     }
 
     public function getId(){

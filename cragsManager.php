@@ -10,11 +10,14 @@ use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
 include('Style/header.php');
-echo "</br></br></br></br>";
+
 $tableController = new CragsTableController(1);
-if($tableController == null) echo "Failed to initialize table controller";
+if($tableController == null) { 
+
+    echo "Failed to initialize table controller"; 
+}
+
 $table = new DataTable($tableController);
-echo "</br></br></br></br>";
 $table->draw();
 
 include('Style/footer.php');

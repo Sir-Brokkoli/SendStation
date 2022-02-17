@@ -36,6 +36,11 @@ class SessionsDataGateway extends DataGateway {
         }
     }
 
+    public function getScheme() : array {
+
+        return Session::getSerializationScheme();
+    }
+
     public function findAll(){
 
         $sessionsData = parent::findAll();

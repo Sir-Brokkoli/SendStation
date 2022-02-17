@@ -9,6 +9,8 @@ use Sendstation\Database\ISerializable;
  */
 class Session implements ISerializable {
 
+    private static $serializationScheme = ["id", "id_climber", "id_crag", "date", "is_eco", "reg_date", "is_active"];
+
     private $id;
     private $climberId;
     private $cragId;
@@ -38,13 +40,29 @@ class Session implements ISerializable {
 
     public function serialize() : array {
 
-        // TODO: Implementation
-        return array();
+        return array(self::$serializationScheme[0] => $this->id,
+                    self::$serializationScheme[1] => $this->climberId,
+                    self::$serializationScheme[2] => $this->cragId,
+                    self::$serializationScheme[3] => $this->date,
+                    self::$serializationScheme[4] => $this->isEco,
+                    self::$serializationScheme[5] => $this->registrationDate,
+                    self::$serializationScheme[6] => $this->isActive);
     }
 
     public function deserialize(array $data) {
 
-        // TODO: Implementation
+        $this->id = $data[self::$serializationScheme[0]];
+        $this->climberId = $data[self::$serializationScheme[1]];
+        $this->cragId = $data[self::$serializationScheme[2]];
+        $this->date = $data[self::$serializationScheme[3]];
+        $this->isEco = $data[self::$serializationScheme[4]];
+        $this->registrationDate = $data[self::$serializationScheme[5]];
+        $this->isActive = $data[self::$serializationScheme[6]];
+    }
+
+    public static function getSerializationScheme() : array {
+
+        return self::$serializationScheme;
     }
 
     public function getId(){
