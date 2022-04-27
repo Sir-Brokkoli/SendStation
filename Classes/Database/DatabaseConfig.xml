@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="SendstationDB">
+
+    <entity tablename="Climbers" name="climber">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <attr type="CHAR(32) NOT NULL UNIQUE">
+            nickname
+        </attr>
+        <attr type="CHAR(32) NOT NULL UNIQUE">
+            email
+        </attr>
+        <attr type="CHAR(255) NOT NULL">
+            password
+        </attr>
+        <attr type="CHAR(256)">
+            description
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 0">
+            admin
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 0">
+            manager
+        </attr>
+        <attr type="TIMESTAMP DEFAULT CURRENT_TIMESTAMP">
+            reg_date
+        </attr>
+    </entity>
+
+    <entity tablename="Crags" name="crag">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <attr type="CHAR(32) NOT NULL">
+            name
+        </attr>
+        <attr type="CHAR(128)">
+            description
+        </attr>
+    </entity>
+
+    <entity tablename="Routes" name="route">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Crags(id)" cascade="">
+            id_crag
+        </foreign>
+        <attr type="CHAR(32) NOT NULL">
+            name
+        </attr>
+        <attr type="CHAR(3) NOT NULL">
+            grade
+        </attr>
+        <attr type="CHAR(128)">
+            description
+        </attr>
+    </entity>
+
+    <entity tablename="Sessions" name="session">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climbers(id)" cascade="">
+            id_climber
+        </foreign>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Crags(id)" cascade="">
+            id_crag
+        </foreign>
+        <attr type="DATE DEFAULT CURDATE">
+            date
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 0">
+            is_eco
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 1">
+            is_active
+        </attr>
+        <attr type="TIMESTAMP DEFAULT CURRENT_TIMESTAMP">
+            reg_date
+        </attr>
+    </entity>
+
+    <entity tablename="Goes" name="go">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Sessions(id)" cascade="">
+            id_session
+        </foreign>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Routes(id)" cascade="">
+            id_route
+        </foreign>
+        <attr type="INT(10) NOT NULL">
+            name
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 0">
+            send
+        </attr>
+        <attr type="TINYINT(1) NOT NULL DEFAULT 0">
+            toprope
+        </attr>
+    </entity>
+
+    <entity tablename="TickerMessages" name="ticker_message">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climber(id)" cascade="">
+            id_climber
+        </foreign>
+        <attr type="CHAR(64) NOT NULL">
+            message
+        </attr>
+    </entity>
+
+    <entity tablename="Achievements" name="achievement">
+        <key type="INT(6) UNSIGNED AUTO_INCREMENT">
+            id
+        </key>
+        <attr type="CHAR(32) UNIQUE NOT NULL">
+            name
+        </attr>
+        <attr type="CHAR(128) NOT NULL">
+            description
+        </attr>
+        <attr type="CHAR(256) NOT NULL">
+            condition
+        </attr>
+        <attr type="INT NOT NULL">
+            points
+        </attr>
+        <attr type="BLOB">
+            icon
+        </attr>
+    </entity>
+
+    <relation tablename="Climber_Achievement">
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climbers(id)" cascade="">
+            id_climber
+        </foreign>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climbers(id)" cascade="">
+            id_achievement
+        </foreign>
+        <attr type="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP">
+            timestamp
+        </attr>
+    </relation>
+
+    <relation tablename="Follower">
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climbers(id)" cascade="">
+            id_follower
+        </foreign>
+        <foreign type="INT(6) UNSIGNED NOT NULL" ref="Climbers(id)" cascade="">
+            id_followee
+        </foreign>
+        <attr type="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP">
+            timestamp
+        </attr>
+    </relation>
+    
+</database>

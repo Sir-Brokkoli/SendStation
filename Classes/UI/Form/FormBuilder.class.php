@@ -60,7 +60,7 @@ final class FormBuilder {
     public function addTextField(string $id, string $name, string $label, int $labelSize) : FormBuilder {
 
         $textElement = new TextField($id, $name, $label, $labelSize, TextField::TEXT);
-        $this->form->addFormElement($textElement);
+        $this->form->addContent($textElement);
 
         return $this;
     }
@@ -78,7 +78,7 @@ final class FormBuilder {
     public function addEmailField(string $id, string $name, string $label, int $labelSize) : FormBuilder {
 
         $textElement = new TextField($id, $name, $label, $labelSize, TextField::EMAIL);
-        $this->form->addFormElement($textElement);
+        $this->form->addContent($textElement);
 
         return $this;
     }
@@ -96,7 +96,7 @@ final class FormBuilder {
     public function addPasswordField(string $id, string $name, string $label, int $labelSize) : FormBuilder {
 
         $textElement = new TextField($id, $name, $label, $labelSize, TextField::PASSWORD);
-        $this->form->addFormElement($textElement);
+        $this->form->addContent($textElement);
 
         return $this;
     }
@@ -135,7 +135,7 @@ final class FormBuilder {
         $numberField->setStep($step);
         $numberField->setValue($value);
 
-        $this->form->addFormElement($numberField);
+        $this->form->addContent($numberField);
 
         return $this;
     }
@@ -156,7 +156,7 @@ final class FormBuilder {
 
         $checkBox = new CheckBox($id, $name, $label, $labelSize, $defaultValue);
 
-        $this->form->addFormElement($checkBox);
+        $this->form->addContent($checkBox);
 
         return $this;
     }
@@ -180,7 +180,7 @@ final class FormBuilder {
         $selectBox->setOptions($options);
         $selectBox->setEmptyOption($emptyOption);
 
-        $this->form->addFormElement($selectBox);
+        $this->form->addContent($selectBox);
 
         return $this;
     }
@@ -196,7 +196,7 @@ final class FormBuilder {
     public function addHidden($id, $name) : FormBuilder {
 
         $hiddenField = new HiddenField($id, $name);
-        $this->form->addFormElement($hiddenField);
+        $this->form->addContent($hiddenField);
 
         return $this;
     }

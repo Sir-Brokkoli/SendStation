@@ -7,11 +7,13 @@ class Page {
 
     private PageRequest $pageRequest;
     private array $content;
+    private bool $hasFollowingPage;
 
-    public function __construct(PageRequest $pageRequest, array $content) {
+    public function __construct(PageRequest $pageRequest, array $content, bool $hasFollowingPage = false) {
 
         $this->pageRequest = $pageRequest;
         $this->content = $content;
+        $this->hasFollowingPage = $hasFollowingPage;
     }
 
     public function getPageRequest() : PageRequest {
@@ -22,6 +24,11 @@ class Page {
     public function getContent() : array {
 
         return $this->content;
+    }
+
+    public function hasNext() :bool {
+
+        return $this->hasFollowingPage;
     }
 }
 

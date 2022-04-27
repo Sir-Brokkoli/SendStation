@@ -1,17 +1,29 @@
 <?php namespace Sendstation\Authentication;
 
-include_once 'Classes/Database.class.php';
-
-use Sendstation\Database\Database;
+use Sendstation\Database\Repository;
 
 class AuthenticationService {
 
-    public static function isAdminUser($username) {
+    private static Repository $userRepository;
 
-        $userGateway = Database::getClimbersDataGateway();
-        $user = $userGateway->findByUsername($username);
+    public static function hasAdminAuthority() :bool {
+        
+        \session_start();
+        $id = $_SESSION['id'];
 
-        return $user != null;
+        $sql = "SELECT COUNT(*) AS admin FROM (SELECT * FROM {self::$userRepository->tableName()} WHERE id=? AND admin=1) AS res";
+
+        return self::$userRepository->executeQuery($sql, $out, $id) && $out->fetch_assoc()['admin'] == 1;
+    }
+
+    public static function hasManagerAuthority() :bool {
+
+        \session_start();
+        $id = $_SESSION['id'];
+
+        $sql = "SELECT COUNT(*) AS manager FROM (SELECT * FROM {self::$userRepository->tableName()} WHERE id=? AND manager=1) AS res";
+
+        return self::$userRepository->executeQuery($sql, $out, $id) && $out->fetch_assoc()['manager'] == 1;
     }
 }
 

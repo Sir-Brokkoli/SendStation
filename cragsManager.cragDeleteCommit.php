@@ -1,0 +1,32 @@
+<?php namespace Sendstation;
+
+use Sendstation\Model\Crag;
+use Sendstation\Database\Database;
+
+ini_set ("display_errors", "1");
+error_reporting(E_ALL);
+
+require_once('Classes/Database.class.php');
+include_once('Classes/Model/Crag.class.php');
+
+session_start();
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+    $dataGateway = Database::getCragsDataGateway();
+
+    //Authentication
+    //$climberId = $_SESSION['id'];
+
+    //Fetch input data
+    $crag = null;
+    if (key_exists('id', $_POST) && \is_numeric($_POST['id']) && $crag = $dataGateway->findEntryById(intval($_POST['id']))) {
+
+        var_dump($crag);
+        $dataGateway->deleteEntry($crag);
+    }
+
+    //header("location: cragsManager.php");
+}
+
+?>

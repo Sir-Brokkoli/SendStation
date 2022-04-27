@@ -15,12 +15,19 @@ class LoginHandler implements IUserServiceRequestHandler {
         $user = $userDataGateway->findByEmail($request->getEmail());
 
         if(password_verify($request->getPassword(), $user->getPasswordHash())){
-            session_reset();
+            \session_reset();
             
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $user->getId();
             $_SESSION["nickname"] = $user->getNickname();
         }
+    }
+
+    public static function isLoggedUser($id) {
+
+        \session_start();
+
+        return \key_exists('id', $_SESSION) && $_SESSION['id'] == $id;
     }
 }
 

@@ -21,8 +21,25 @@ require_once('Classes/CragHandler.class.php');
                     </div>
                     <div class="card bg-dark text-light shadowbox mb-4">
                         <div class="card-body text-left">
-                            <h3 class="card-title text-col1 my-3">Active sessions</h3>
+                            <h3 class="card-title text-col1 my-3">Active session</h3>
                             <?php include('UI/activeSession.ui.php'); ?>
+                        </div>
+                    </div>
+                    <div class="card bg-dark text-light shadowbox mb-4">
+                        <div class="card-body text-left">
+                            <h3 class="card-title text-col1 my-3">Your progress</h3>
+                            <?php include 'UI/progress.ui.php'; ?>
+                        </div>
+                    </div>
+                    <div class="card bg-dark text-light shadowbox mb-4">
+                        <div class="card-body text-left">
+                            <h3 class="card-title text-col1 my-3">Blackboard</h3>
+                            <div class="card bg-light text-dark shadowbox">
+                                <div class="card-body text-left">
+                                    <h6 class="card-title text-col2">Bananenbaron</h6>
+                                    <p>Du assozialer Bastard, ich brich dir die Beine!</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,8 +48,8 @@ require_once('Classes/CragHandler.class.php');
                         <div class="card-body text-left">
                             <h3 class="card-title text-col1 my-3">Newsticker</h3>
                             <div class="card-body">
-                                <div class="card bg-col2-light p-3">
-                                    <div class="card bg-dark text-light my-1 px-1">
+                                <div class="card bg-light p-1">
+                                    <div class="card bg-dark text-light mb-1 px-1">
                                         <div class="card-body row">
                                             <div class="col-10">
                                                 <p class="card-text"><span class="text-col1">Bananenbaron</span> had a session at Dschungelbuch</p>
@@ -42,7 +59,7 @@ require_once('Classes/CragHandler.class.php');
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card bg-dark text-light my-1 px-1">
+                                    <div class="card bg-dark text-light mb-1 px-1">
                                         <div class="card-body row">
                                             <div class="col-10">
                                                 <p class="card-text">
@@ -94,7 +111,7 @@ require_once('Classes/CragHandler.class.php');
                         <label for="#inputEco" class="h6">
                             Eco-friendly (bike, public transport)
                         </label>
-                        <input type="checkbox"  name="eco" id="inputEco">
+                        <input type="checkbox" name="eco" id="inputEco">
                     </div>
                 </div>
                 <div class="modal-footer">

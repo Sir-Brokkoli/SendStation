@@ -19,7 +19,7 @@ if($sessionData = ConnectionMysql::getDataFromTable(DT_SESSIONS, "id, id_crag, d
             //Fetch crag name
             if($cragData = ConnectionMysql::getDataFromTable(DT_CRAGS, "name", "id = ?", "", $session['id_crag'])){
                 if($cragData->num_rows > 0 && $crag = $cragData->fetch_assoc()){
-                    $html = "<div class=\"card bg-dark text-light my-1 px-1\">" .
+                    $html = "<div class=\"card bg-dark text-light mb-1 px-1\">" .
                         "<div class=\"card-body row\">" .
                             "<div class=\"col-10\">" .
                                 "<p class=\"card-text\">" .

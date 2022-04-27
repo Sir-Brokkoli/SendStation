@@ -7,7 +7,7 @@
             <div class="p-5"> 
                 <h1> All aboard the <span class="text-col2">send train!</span> </h1>
                 <p class="lead my-4">
-                    Our team of experts spend 2 hours to find 39 of the very best climbs around Innsbruck! So what are you waiting for? 
+                    Our team of experts spent 2 hours to find 39 of the very best climbs around Innsbruck! So what are you waiting for? 
                     Pack your shit, start the freaking engine and bring this old train to new glory!
                 </p>
                 <button class="btn btn-lg btn-col2 text-light" data-bs-toggle="modal" data-bs-target="#logInModal">Start the engine!</button>
@@ -26,8 +26,8 @@
     <div class="container">
         <div class="d-md-flex justify-content-between align-items-center">
             <div class="px-5">
-                <h3 class="mb-0 mb-md-0"> You do not own a train? </h3>
-                <p class="lead"> No problem, sign up for one here and join the competition!</p>
+                <h3 class="mb-0 mb-md-0"> You do not have a ticket? </h3>
+                <p class="lead"> No problem, you won't need one! Just sign up here and join the competition!</p>
             </div>
             
             <button type="button" class="btn btn-lg btn-col1 text-dark mx-5" data-bs-toggle="modal" data-bs-target="#signUpModal"> Sign up! </button>
@@ -47,7 +47,8 @@
                         </div>
                         <h3 class="card-title">Who?</h3>
                         <p class="card-text">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat neque iusto quos quisquam molestias fuga?
+                            Everybody is welcomed to join this little event, whether you are a beginner or freakin' Hawar Demhard! 
+                            Just bring some good mood, respect the community and have fun!
                         </p>
                         <a href="#" class="btn btn-col2 text-light">Read more</a>
                     </div>

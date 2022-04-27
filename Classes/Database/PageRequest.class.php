@@ -18,6 +18,21 @@ class PageRequest {
 
         return new PageRequest($pageNumber, $pageSize);
     }
+
+    public function getPageNumber() {
+
+        return $this->pageNumber;
+    }
+
+    public function getPageSize() {
+
+        return $this->pageSize;
+    }
+
+    public function getOffset() {
+
+        return $this->pageSize * $this->pageNumber;
+    }
 }
 
 ?>

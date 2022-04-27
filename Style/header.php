@@ -44,6 +44,12 @@
                         <li class="nav-item">
                             <a href="contact.php" class="nav-link">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="cragsManager.php" class="nav-link">Crags Manager</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="userManager.php" class="nav-link">User Manager</a>
+                        </li>
                         <?php
                         if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                             echo "<li class=\"nav-item\"><a href=\"logOut.commit.php\" class=\"nav-link\">Log Out</a></li>";

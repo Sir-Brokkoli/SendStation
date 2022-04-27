@@ -37,7 +37,7 @@ class DataTable implements IDrawable {
 
                 echo "<td>" . $row[$col] . "</td>";
             }
-            echo "<td><button>Edit</button><button>Delete</button></td>";
+            echo "<td><button class=\"btn btn-light\">Edit</button><button class=\"btn btn-dark\">Delete</button></td>";
             echo "</tr>";
         }
         

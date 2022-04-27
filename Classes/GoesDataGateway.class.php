@@ -165,6 +165,23 @@ class GoesDataGateway extends DataGateway {
         catch (\mysql_sql_exception $e) { }
     }
 
+    public function getGoesDatasheet($climberId) {
+        $sql = "SELECT COUNT(*) AS goes, 
+                    COUNT(DISTINCT g.id_session) AS sessions, 
+                    SUM(g.falls) AS falls, 
+                    MAX(g.falls) AS mostFalls 
+                FROM Goes AS g 
+                JOIN (SELECT id FROM Sessions WHERE id_climber = ?) AS s ON g.id_session = s.id;";
+
+        try {
+
+            $this->executeSQL($sql, $out, $climberId);
+
+            return $out;
+        }
+        catch (\mysql_sql_exception $e) { return false; }
+    }
+
     private function getGoesFromData($goesData) {
         $goes = array();
         while($data = $goesData->fetch_assoc()){

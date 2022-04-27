@@ -13,7 +13,7 @@ require_once 'Classes/SessionHandler.class.php';
 require_once 'Classes/CragHandler.class.php';
 require_once 'Classes/UI/ActiveSessionRouteCard.class.php';
 
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
 
     $goesDataGateway = Database::getGoesDataGateway();
 
@@ -21,12 +21,12 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     SessionHandler::openGateway();
     $session = SessionHandler::getActiveSessionOf($climberId);
 
-    if($session != null && $session != false){
+    if($session != null && $session){
 
         $crag = CragHandler::getCragById($session->getCragId());
 
         echo "<div class=\"container\">";
-        echo "<p class=\"card-text text-light\"> You have an active session at <span class=\"h5\">" . $crag->getName() . "</span> started at " . $session->getRegistrationDate() . ".</p>";
+        echo "<h4 class=\"card-text text-light\">{$crag->getName()}</h4>";
         
         $routes = CragHandler::getRoutesInCrag($crag);
 

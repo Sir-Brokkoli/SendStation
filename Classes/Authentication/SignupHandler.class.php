@@ -3,33 +3,44 @@
 require_once 'Classes/Database.class.php';
 require_once 'IUserServiceRequestHandler.class.php';
 require_once 'LoginHandler.class.php';
+require_once 'SignupValidationResponse.class.php';
 
 use Sendstation\Database\Database;
+
 use Sendstation\Model\Climber;
 
 class SignupHandler implements IUserServiceRequestHandler {
 
     public static function processRequest($request){
+
+        $response = new SignupValidationResponse();
         
         $userDataGateway = Database::getClimbersDataGateway();
 
         if($userDataGateway->findByEmail($request->getEmail()) != null){
-            // TODO: Implement Email-already-taken response
-            return false;
+            
+            $response->setEmailTaken();
         }
         
         if($userDataGateway->findByUsername($request->getUsername()) != null){
-            // TODO: Implement Username-already-taken response
-            return false;
+            
+            $response->setUsernameTaken();
         }
 
-        $passwordHash = password_hash($request->getPassword(), PASSWORD_DEFAULT);
-        $user = new Climber(null, $request->getUsername(), $request->getEmail(), $passwordHash, null);
+        if($response->isEmailValid() && $response->isUsernameValid()) {
 
-        if($userDataGateway->saveEntry($user)) {
+            $passwordHash = password_hash($request->getPassword(), PASSWORD_DEFAULT);
+            $user = new Climber(null, $request->getUsername(), $request->getEmail(), $passwordHash, null);
 
-            LoginHandler::processRequest($request);
+            if($userDataGateway->saveEntry($user)) {
+
+                LoginHandler::processRequest($request);
+
+                $response->setSuccess();
+            }
         }
+
+        return $response;
     }
 }
 

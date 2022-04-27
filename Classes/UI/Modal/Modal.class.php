@@ -11,34 +11,38 @@ use Sendstation\UI\IDrawable;
  */
 class Modal implements IDrawable {
 
-    private $modalId;
-    private $fade;
+    private string $modalId;
 
-    private $content;
+    private bool $fade = true;
+    private bool $staticBackdrop = false;
 
-    public function __construct($modalId, $fade = true) {
+    private array $content;
+
+    public function __construct($modalId) {
 
         $this->modalId = $modalId;
-        $this->fade = $fade;
     }
 
-    public function draw() {
+    public function draw() : void {
 
         echo "<div class=\"modal " . 
             ($this->fade ? "fade" : "") . 
-            "\" id=\"" . 
-            $this->modalId . 
-            "\">";
+            "\" id=\"" . $this->modalId . "\"" .
+            ($this->staticBackdrop ? "\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\"" : "") . 
+            ">";
         echo "<div class=\"modal-dialog\">";
 
-        $this->content->draw();
+        foreach ($this->content as $element) {
+
+            $element->draw();
+        }
 
         echo "</div></div>";
     }
 
-    public function setContent($content) : void {
+    public function addContent(IDrawabel $element) : void {
 
-        $this->content = $content;
+        array_push($this->content, $element);
     }
 }
 
