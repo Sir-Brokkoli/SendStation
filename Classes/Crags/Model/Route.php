@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Crags\Model;
 
+require_once 'Classes/Database/IEntity.php';
+
+use Sendstation\Database\IEntity;
+
 /**
  * The entity representing a climbing route.
  */
-class Route {
+class Route implements IEntity {
     
     private $id;
     private $name;
