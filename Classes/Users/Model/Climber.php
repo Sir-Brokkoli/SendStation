@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Users\Model;
 
+require_once 'Classes/Database/IEntity.php';
+
+use Sendstation\Database\IEntity;
+
 /**
  * The entity representing a climber registered in the competition.
  */
-class Climber {
+class Climber implements IEntity {
 
     private $id;
     private $nickname;
