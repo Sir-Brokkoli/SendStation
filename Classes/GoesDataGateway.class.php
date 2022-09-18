@@ -2,9 +2,9 @@
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Classes/Model/Go.class.php';
+include_once 'Classes/Sessions/Model/Go.php';
 
-use Sendstation\Model\Go;
+use Sendstation\Sessions\Model\Go;
 
 class GoesDataGateway extends DataGateway {
 

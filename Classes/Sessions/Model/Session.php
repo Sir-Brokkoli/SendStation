@@ -1,9 +1,13 @@
-<?php namespace Sendstation\Model;
+<?php namespace Sendstation\Sessions\Model;
+
+require_once 'Classes/Database/IEntity.php';
+
+use Sendstation\Database\IEntity;
 
 /**
  * The entity representing a climbing session.
  */
-class Session {
+class Session implements IEntity {
 
     private $id;
     private $climberId;

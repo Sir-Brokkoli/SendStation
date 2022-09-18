@@ -4,9 +4,9 @@ include_once 'IDrawable.php';
 include_once 'CragProgressBar.class.php';
 include_once 'GoesProgressSheet.class.php';
 
-include_once 'Classes/Database.class.php';
+include_once 'Classes/Sessions/GoRepositoryImpl.php';
 
-use Sendstation\Database\Database;
+use Sendstation\Sessions\GoRepositoryImpl;
 
 class ProgressDataSheet implements IDrawable {
 
@@ -57,7 +57,7 @@ class ProgressDataSheet implements IDrawable {
 
     private function fetchData(int $climberId) :void {
 
-        $cragsData = Database::getGoesDataGateway()->findSendedRoutesCount($climberId);
+        $cragsData = GoRepositoryImpl::getInstance()->accummulateSendCountPerCrag($climberId);
 
         $totalSends = 0;
         $totalRoutes = 0;
@@ -75,7 +75,7 @@ class ProgressDataSheet implements IDrawable {
         $this->overallProgressBar = new CragProgressBar("Overall", $totalRoutes, $totalSends);
         $this->overallProgressBar->setBackgroundClass("bg-warning");
 
-        $goesData = Database::getGoesDataGateway()->getGoesDatasheet($climberId)->fetch_assoc();
+        $goesData = GoRepositoryImpl::getInstance()->accummulateGoesData($climberId)->fetch_assoc();
 
         $this->goesProgressSheet = new GoesProgressSheet(intval($goesData['sessions']), intval($goesData['goes']), 
                                                     intval($goesData['falls']), intval($goesData['mostFalls']));
