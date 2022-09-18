@@ -24,14 +24,18 @@ class GoesProgressSheet implements IDrawable {
 
         echo "<div class=\"row g-3\">";
         echo "<div class=\"col-sm-6\">";
-        echo "<h5>Sessions: {$this->sessions}</h5>";
-        echo "<h5>Goes: {$this->goes}</h5>";
-        echo "<h5>Falls: {$this->totalFalls}</h5>";
+        echo "<table class=\"table table-dark\"><tbody>";
+        echo "<tr class=\"h5\"><td>Sessions:</td><td>{$this->sessions}</td></tr>";
+        echo "<tr class=\"h5\"><td>Goes:</td><td>{$this->goes}</td></tr>";
+        echo "<tr class=\"h5\"><td>Falls:</td><td>{$this->totalFalls}</td></tr>";
+        echo "</tbody></table>";
         echo "</div>";
         echo "<div class=\"col-sm-6\">";
-        echo "<h5>Avg goes: {$avgGoes}</h5>";
-        echo "<h5>Avg falls: {$avgFalls}</h5>";
-        echo "<h5>Max falls: {$this->maxFalls}</h5>";
+        echo "<table class=\"table table-dark\"><tbody>";
+        echo "<tr class=\"h5\"><td>Avg goes:</td><td>{$avgGoes}</td></tr>";
+        echo "<tr class=\"h5\"><td>Avg falls:</td><td>{$avgFalls}</td></tr>";
+        echo "<tr class=\"h5\"><td>Max falls:</td><td>{$this->maxFalls}</td></tr>";
+        echo "</tbody></table>";
         echo "</div>";
         echo "</div>";
     }

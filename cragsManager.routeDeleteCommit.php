@@ -1,13 +1,13 @@
 <?php namespace Sendstation;
 
-use Sendstation\Model\Route;
+use Sendstation\Crags\Model\Route;
 use Sendstation\Database\Database;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 require_once('Classes/Database.class.php');
-include_once('Classes/Model/Route.class.php');
+include_once('Classes/Crags/Model/Route.php');
 
 session_start();
 

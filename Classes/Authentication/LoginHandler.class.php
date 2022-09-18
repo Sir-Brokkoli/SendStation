@@ -1,16 +1,16 @@
 <?php
 namespace Sendstation\Authentication;
 
-use Sendstation\Database\Database;
-
-require_once 'Classes/Database.class.php';
+require_once 'Classes/Users/ClimberRepositoryImpl.php';
 require_once 'IUserServiceRequestHandler.class.php';
+
+use Sendstation\Users\ClimberRepositoryImpl;
 
 class LoginHandler implements IUserServiceRequestHandler {
 
     public static function processRequest($request){
 
-        $userDataGateway = Database::getClimbersDataGateway();
+        $userDataGateway = ClimberRepositoryImpl::getInstance();
 
         $user = $userDataGateway->findByEmail($request->getEmail());
 

@@ -1,7 +1,7 @@
 <?php include('Style/header.php'); ?>
 
 <!-- Intro -->
-<section class="bg-dark text-light p-3 mt-5 text-center text-sm-start">
+<section class="bg-dark text-light p-3 mt-3 text-center text-sm-start">
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between">
             <div class="p-5"> 
@@ -22,21 +22,22 @@
 </section>
 
 <!-- Sign up bar -->
-<section class="text-light p-5 bg-col2">
+<section class="text-light p-md-5 bg-col2">
     <div class="container">
-        <div class="d-md-flex justify-content-between align-items-center">
-            <div class="px-5">
+        <div class="d-md-flex align-items-center justify-content-between text-center">
+            <div class="p-4">
                 <h3 class="mb-0 mb-md-0"> You do not have a ticket? </h3>
-                <p class="lead"> No problem, you won't need one! Just sign up here and join the competition!</p>
+                <p class="lead"> No worries, you won't need one! Just sign up here and join the competition!</p>
             </div>
             
-            <button type="button" class="btn btn-lg btn-col1 text-dark mx-5" data-bs-toggle="modal" data-bs-target="#signUpModal"> Sign up! </button>
+            <button type="button" class="btn btn-lg btn-col1 text-dark mx-5" data-bs-toggle="modal" data-bs-target="#signUpModal"> Sign up here! </button>
+            <div class="p-3"></div>
         </div>
     </div>
 </section>
 
 <!-- Short Description -->
-<section class="p-5">
+<section class="py-5 px-wd-5">
     <div class="container" id="bgTrain">
         <div class="row text-center g-4">
             <div class="col-md">
@@ -47,7 +48,7 @@
                         </div>
                         <h3 class="card-title">Who?</h3>
                         <p class="card-text">
-                            Everybody is welcomed to join this little event, whether you are a beginner or freakin' Hawar Demhard! 
+                            Everybody is welcomed to join this little event, whether you are a beginner or freakin' Hawar Hasan! 
                             Just bring some good mood, respect the community and have fun!
                         </p>
                         <a href="#" class="btn btn-col2 text-light">Read more</a>

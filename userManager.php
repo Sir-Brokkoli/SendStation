@@ -3,7 +3,7 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-include_once 'Classes/Database.class.php';
+include_once 'Classes/Users/ClimberRepositoryImpl.php';
 
 include_once 'Classes/UI/DataTable.class.php';
 include_once 'Classes/UI/Controller/CragsTableController.class.php';
@@ -11,16 +11,16 @@ include_once 'Classes/UI/Controller/CragsTableController.class.php';
 use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
-use Sendstation\Database\Database;
+use Sendstation\Users\ClimberRepositoryImpl;
 
 include('Style/header.php');
 
-$climbers = Database::getClimbersDataGateway()->findAll();
+$climbers = ClimberRepositoryImpl::getInstance()->findAll();
 
 ?>
 
 <div class="d-flex flex-column flex-fill bgTrain">
-    <section class="p-5 mt-5">
+    <section class="p-md-5 pt-5 mt-5">
         <div class="container">
             <div id="cragTable" class="py-5">
                 <table class="table table-bordered table-dark">

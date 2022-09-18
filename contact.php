@@ -1,6 +1,6 @@
 <?php include('Style/header.php'); ?>
 
-<div class="d-flex flex-column flex-fill bgTrain">
+<div class="d-flex flex-column flex-fill bgMountains">
     <section class="p-5 mt-5">
         <div class="container bg-dark text-light p-5">
             <h2>Contact</h2>

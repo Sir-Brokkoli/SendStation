@@ -1,0 +1,70 @@
+<crag name="Mull" description="A small and shady crag to the very left of Martinswand. Recommended to those who like it bouldery.">
+    <route name="La Bella" grade="6a+"/>
+    <route name="Il Matrimonio" grade="6c+"/>
+    <route name="Road to Hell" grade="7a+"/>
+</crag>
+
+<crag name="Grottenwegwand" description="A crag for those who enjoy a good view. Located at the Kaiser-Max-Grotte, it serves with airy almost vertical routes.">
+    <route name="Der kleine Prinz" grade="5c+"/>
+    <route name="D-Tour" grade="6a+"/>
+    <route name="Giuditta" grade="6b"/>
+    <route name="Gritlis Bauchtanz" grade="6c+"/>
+</crag>
+
+<crag name="Dschungelbuch" description="Without doubt the most famous crag at the Martinswand. Prepare to get smacked by this crimpy dream!">
+
+</crag>
+
+<crag name="Plattenschleicher" description="">
+    <route name="Zum Edelweis" grade="5c"/>
+    <route name="Dr. Sommer" grade="6a+"/>
+    <route name="Ziege" grade="6a+"/>
+    <route name="Nackte Tiroler" grade="6c+"/>
+    <route name="Sesso e Sassi" grade="7a"/>
+    <route name="Haifisch" grade="7a"/>
+</crag>
+
+<crag name="ÖAV Klettergarten" description="Always wanted to go icescating in summer? Than this is your crag! However, still got some nice slabs.">
+    <route name="780er" grade="5c"/>
+    <route name="Black Out" grade="6b"/>
+    <route name="Birdy" grade="6b+"/>
+    <route name="Only the Brave" grade="6c"/>
+</crag>
+
+<crag name="Alpinmagazin" description="Highlight of this crag are the almost negligent distances between bolts. But we tested it ourself and it turned out safe.">
+    <route name="Malatschag" grade="6a"/>
+    <route name="Cassandra" grade="6b+"/>
+    <route name="Ö3 dabei" grade="6c+"/>
+    <route name="Der Hammer" grade="7a+"/>
+</crag>
+
+<crag name="Galerie" description="An elegant vertical piece of yellow rock to the right of the Martinswand. This beauty is clearly blessed by the sun.">
+    <route name="Galerie" grade="6a+"/>
+    <route name="Elefanti" grade="6b"/>
+    <route name="Fußarbeit" grade="6b+"/>
+    <route name="Let's Dance" grade="6c+"/>
+</crag>
+
+<crag name="Supermarkt" description="Some compare it with Frankenstein's monster, brought to live against its will. However, got some nice slabs.">
+    <route name="Makaria" grade="6a"/>
+    <route name="Dädalos" grade="6b"/>
+    <route name="The fameous Potatoes of Idaho" grade="7a"/>
+</crag>
+
+<crag name="Sandburg" description="">
+
+</crag>
+
+<crag name="Kranebitten" description="A special climate with constant high humidity gives this crag a special touch. At least it's shady.">
+    <route name="Eppi Leppi" grade="6a"/>
+    <route name="Gringo" grade="6b+"/>
+    <route name="Bold Man" grade="7a"/>
+    <route name="Uff Uff" grade="7b"/>
+</crag>
+
+<crag name="Höttinger Steinbruch" description="Due to a famous boulder passage, the first few meters are of a rock quality that lets you consider using a clipstick.">
+    <route name="Birkenverschneidung" grade="5c+"/>
+    <route name="Obere Wand" grade="6a+"/>
+    <route name="Powerplay" grade="6b+"/>
+    <route name="Rollsplit" grade="7a"/>
+</crag>

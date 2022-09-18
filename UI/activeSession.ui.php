@@ -25,8 +25,12 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
 
         $crag = CragHandler::getCragById($session->getCragId());
 
-        echo "<div class=\"container\">";
-        echo "<h4 class=\"card-text text-light\">{$crag->getName()}</h4>";
+        echo "<div>";
+        echo "<div class=\"row g-2 align-items-center justify-content-between text-center\">";
+        echo "<div class=\"col-md-6 h4 card-text text-light\">{$crag->getName()}</div>";
+        echo "<div class=\"col-md-6\"><button class=\"btn btn-col2 text-light my-2 mx-3\" data-bs-toggle=\"modal\" data-bs-target=\"#finishSessionModal\"> Finish session</button>";
+        echo "<button class=\"btn btn-secondary my-2 mx-3\" data-bs-toggle=\"modal\" data-bs-target=\"#delActiveSessionModal\"> Discard session</button></div>";
+        echo "</div>";
         
         $routes = CragHandler::getRoutesInCrag($crag);
 
@@ -45,10 +49,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
             $routeCard->draw();
         }
 
-        echo "</div>";
-        echo "<div class=\"container justify-items-between align-center\">";
-        echo "<button class=\"btn btn-col2 text-light ml-5 my-2\" data-bs-toggle=\"modal\" data-bs-target=\"#finishSessionModal\"> Finish session</button>";
-        echo "<button class=\"btn btn-secondary mx-1 my-2\" data-bs-toggle=\"modal\" data-bs-target=\"#delActiveSessionModal\"> Discard session</button>";
         echo "</div>";
     }
     else{

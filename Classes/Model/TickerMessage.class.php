@@ -5,7 +5,7 @@ class TickerMessage {
     private int $climberId;
     private string $message;
 
-    public function construct($climberId, $message) {
+    public function __construct($climberId, $message) {
 
         $this->climberId = $climberId;
         $this->message = $message;

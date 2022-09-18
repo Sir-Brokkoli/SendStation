@@ -8,10 +8,10 @@ require_once('Classes/CragHandler.class.php');
 ?>
 
 <div class="d-flex flex-column flex-fill bgQuickdraws">
-    <section class="p-5 mt-5">
+    <section class="p-md-5 mt-5">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-8 p-3">
+                <div class="col-lg-8 p-md-3">
                     <div class="card bg-col2 text-light shadowbox mb-4">
                         <div class="card-body">
                             <h2 class="card-title my-2">Welcome back <?php echo $_SESSION['nickname']; ?>!</h2>
@@ -37,7 +37,7 @@ require_once('Classes/CragHandler.class.php');
                             <div class="card bg-light text-dark shadowbox">
                                 <div class="card-body text-left">
                                     <h6 class="card-title text-col2">Bananenbaron</h6>
-                                    <p>Du assozialer Bastard, ich brich dir die Beine!</p>
+                                    <p>Hallo! Schön, dass du auch dabei bist!</p>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ require_once('Classes/CragHandler.class.php');
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="#inputFalls" class="h6">Number of falls</label>
-                        <input type="number" min="0" step="1" value="0" class="form-control" name="falls" id="inputFalls">
+                        <input type="number" min="0" step="1" value="0" class="form-control" name="falls" id="inputFalls" update="on_falls_update()">
                     </div>
                     <div class="mb-3">
                         <label for="#inputToprope" class="h6">
@@ -163,7 +163,7 @@ require_once('Classes/CragHandler.class.php');
 </div>
 
 <script>
-var modal = document.getElementById("addGoModal");
+const modal = document.getElementById("addGoModal");
 
 modal.addEventListener("shown.bs.modal", function (event) {
     element = document.getElementById("hiddenRouteId");
@@ -172,6 +172,41 @@ modal.addEventListener("shown.bs.modal", function (event) {
 
     element.value = routeId;
 });
+
+const fallsInputElement = document.getElementById("inputFalls");
+const sendInputElement = document.getElementById("inputSend");
+const topropeInputElement = document.getElementById("inputToprope");
+
+const onFallsInputChange = function(e) {
+    if (fallsInputElement.value > 0) {
+        sendInputElement.disabled = true;
+        sendInputElement.checked = false;
+        topropeInputElement.disabled = true;
+        topropeInputElement.checked = false;
+    }
+    else {
+        fallsInputElement.value = 0;
+        sendInputElement.disabled = false;
+        topropeInputElement.disabled = false;
+    }
+}
+
+const onTopropeInputChange = function(e) {
+    if (sendInputElement.checked && topropeInputElement.checked) {
+        sendInputElement.checked = false;
+    }
+}
+
+const onSendInputChange = function(e) {
+    if (sendInputElement.checked && topropeInputElement.checked) {
+        topropeInputElement.checked = false;
+    }
+}
+
+fallsInputElement.addEventListener("input", onFallsInputChange);
+fallsInputElement.addEventListener("propertychange", onFallsInputChange);
+topropeInputElement.addEventListener("change", onTopropeInputChange);
+sendInputElement.addEventListener("change", onSendInputChange);
 </script>
 
 <!-- Delete Active Session Modal -->

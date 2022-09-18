@@ -1,9 +1,9 @@
 <?php namespace Sendstation\UI\Controller;
 
 include_once 'IDataTableController.class.php';
-include_once 'Classes/Database.class.php';
+include_once 'Classes/Crags/CragRepositoryImpl.php';
 
-use Sendstation\Database\Database;
+use Sendstation\Crags\CragRepositoryImpl;
 
 class CragsTableController implements IDataTableController {
 
@@ -15,20 +15,17 @@ class CragsTableController implements IDataTableController {
     private $data;
     private $cursor;
 
-    private $dataGateway = null;
-
     public function __construct($page) {
 
         $this->page = $page;
 
-        $this->dataGateway = Database::getCragsDataGateway();
-        $this->data = $this->dataGateway->findAll();
+        $this->data = CragRepositoryImpl::getInstance()->findAll();
         $this->cursor = 0;
     }
 
     public function getScheme() : array {
 
-        return $this->dataGateway->getScheme();
+        return self::$scheme;
     }
 
     public function hasNext() : bool {

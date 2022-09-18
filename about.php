@@ -1,6 +1,6 @@
 <?php include('Style/header.php');?>
 
-<div class="d-flex flex-column flex-fill bgTrain">
+<div class="d-flex flex-column flex-fill bgMountains">
     <section class="p-5 mt-5">
         <div class="container bg-dark text-light p-5">
             <h3>
@@ -50,7 +50,7 @@
                 became this little website over the last months. A lot of love and work were spent on this project, but 
                 it still is far from perfect. There will be further developement whenever I got spare time and the gusto
                 to spend it for the community. So if anybody has some comments, bugs to report or ideas to improve this
-                little piece of art, don't hesitate to let me know!
+                little piece of art, don't hesitate to <a href="">let me know</a>!
             </p>
             <p>
                 Celebrate the positivity and have fun! </br> Josh

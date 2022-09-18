@@ -2,9 +2,9 @@
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Classes/Model/Route.class.php';
+include_once 'Classes/Crags/Model/Route.php';
 
-use Sendstation\Model\Route;
+use Sendstation\Crags\Model\Route;
 
 class RoutesDataGateway extends DataGateway{
 

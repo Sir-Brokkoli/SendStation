@@ -1,30 +1,24 @@
 <?php namespace Sendstation;
 
 require_once 'Database.class.php';
+require_once 'Classes/Crags/CragRepositoryImpl.php';
 
 use Sendstation\Database\Database;
+use Sendstation\Crags\CragRepositoryImpl;
 
 class CragHandler{
     
     public static function getCrags(){
-
-        $gateway = Database::getCragsDataGateway();
-        $crags = $gateway->findAll();
-        return $crags;
+        return CragRepositoryImpl::getInstance()->findAll();
     }
 
     public static function getCragById($cragId){
-
-        $gateway = Database::getCragsDataGateway();
-        $crag = $gateway->findEntryById($cragId);
-        return $crag;
+        return CragRepositoryImpl::getInstance()->findById($cragId);
     }
 
     public static function getRoutesInCrag($crag){
-
         $gateway = Database::getRoutesDataGateway();
-        $routes = $gateway->findRoutesInCrag($crag->getId());
-        return $routes;
+        return $gateway->findRoutesInCrag($crag->getId());
     }
 }
 

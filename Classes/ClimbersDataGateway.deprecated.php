@@ -43,6 +43,16 @@ class ClimbersDataGateway extends DataGateway {
         return $climbers;
     }
 
+    public function findEntryById($id) {
+
+        $data = $this->getClimbersFromData(parent::findEntryById($id));
+
+        if (empty($data))
+            return false;
+
+        return $data[0];
+    }
+
     public function findByEmail($email){
         $sql = "SELECT * FROM " . $this->getTableName() . " WHERE email = ?";
 

@@ -4,24 +4,32 @@ ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 include_once 'Classes/UI/ProgressDataSheet.class.php';
+include_once 'Classes/Users/ClimberRepositoryImpl.php';
 
 use Sendstation\UI\ProgressDataSheet;
+use Sendstation\Users\ClimberRepositoryImpl;
 
 \session_start();
+
+$isLoggedInClimber = false;
 
 $id = -1;
 if (\key_exists('id', $_GET) && \is_numeric($_GET['id'])) {
 
     $id = $_GET['id'];
+    $isLoggedInClimber = isset($_SESSION['id']) ? ($id == $_SESSION['id']) : false;
 }
 else if(isset($_SESSION['id'])) {
 
     $id = $_SESSION['id'];
+    $isLoggedInClimber = true;
 }
 else {
 
     die();
 }
+
+$displayedClimber = ClimberRepositoryImpl::getInstance()->findById($id);
 
 include('Style/header.php'); ?>
 
@@ -36,10 +44,10 @@ include('Style/header.php'); ?>
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <h5>Name:</h5>
-                                <p>Bananenbaron</p>
+                                <p> <?= $displayedClimber->getNickname(); ?></p>
                                 <h5>Description:</h5> 
-                                <p>I bims, der Lockomotivenführer!!</p> 
-                                <button class="btn btn-col2">Follow</button>
+                                <p><?= $displayedClimber->getDescription(); ?></p> 
+                                <button class="btn btn-col2"><?= $isLoggedInClimber ? "Edit" : "Follow" ?></button>
                             </div>
                             <div class="col-sm-6">
                                 Picture here?
@@ -52,7 +60,7 @@ include('Style/header.php'); ?>
                     <div class="card-body text-left">
                         <h3 class="card-title text-col1 my-3">Progress</h3>
                         <?php 
-                        $sheet = new ProgressDataSheet($id);
+                        $sheet = new ProgressDataSheet($id, true);
                         $sheet->draw();
                         ?>
                     </div>

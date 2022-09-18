@@ -16,8 +16,9 @@ class ProgressDataSheet implements IDrawable {
     private CragProgressBar $overallProgressBar;
     private GoesProgressSheet $goesProgressSheet;
 
-    public function __construct(int $climberId) {
+    public function __construct(int $climberId, $showMoreCrags = false) {
 
+        $this->showMoreCrags = $showMoreCrags;
         $this->fetchData($climberId);
     }
 
@@ -28,7 +29,6 @@ class ProgressDataSheet implements IDrawable {
 
         $max = min($this->showMoreCrags ? 10 : 3, count($this->cragProgressBars));
         for ($i = 0; $i < $max; $i++) {
-
             $this->cragProgressBars[$i]->draw();
         }
 
@@ -41,11 +41,11 @@ class ProgressDataSheet implements IDrawable {
             
         $this->goesProgressSheet->draw();
         echo "</br>";
-        echo "<h5>Unfinished business:</h5>";
+        /*echo "<h5>Unfinished business:</h5>";
         echo "<ul>";
         echo "<li>Famouse potatoes of Idaho (3 Goes)</li>";
         echo "<li>Nackter Tiroler (1 Goes)</li>";
-        echo "</ul>";
+        echo "</ul>";*/
         echo "</div>";
         echo "</div>";
     }
@@ -57,7 +57,7 @@ class ProgressDataSheet implements IDrawable {
 
     private function fetchData(int $climberId) :void {
 
-        $cragsData = Database::getCragsDataGateway()->findSendedRoutesCount($climberId);
+        $cragsData = Database::getGoesDataGateway()->findSendedRoutesCount($climberId);
 
         $totalSends = 0;
         $totalRoutes = 0;
@@ -65,7 +65,6 @@ class ProgressDataSheet implements IDrawable {
         $this->cragProgressBars = array();
 
         while ($crag = $cragsData->fetch_assoc()) {
-
             $bar = new CragProgressBar($crag['name'], $crag['total'], $crag['sends']);
             array_push($this->cragProgressBars, $bar);
 

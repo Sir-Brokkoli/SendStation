@@ -1,15 +1,9 @@
 <?php namespace Sendstation\Model;
 
-include_once 'Classes/Database/ISerializable.class.php';
-
-use Sendstation\Database\ISerializable;
-
 /**
  * The entity representing a climbing session.
  */
-class Session implements ISerializable {
-
-    private static $serializationScheme = ["id", "id_climber", "id_crag", "date", "is_eco", "reg_date", "is_active"];
+class Session {
 
     private $id;
     private $climberId;
@@ -38,32 +32,6 @@ class Session implements ISerializable {
         $this->isActive = $isActive;
     }
 
-    public function serialize() : array {
-
-        return array(self::$serializationScheme[0] => $this->id,
-                    self::$serializationScheme[1] => $this->climberId,
-                    self::$serializationScheme[2] => $this->cragId,
-                    self::$serializationScheme[3] => $this->date,
-                    self::$serializationScheme[4] => $this->isEco,
-                    self::$serializationScheme[5] => $this->registrationDate,
-                    self::$serializationScheme[6] => $this->isActive);
-    }
-
-    public function deserialize(array $data) {
-
-        $this->id = $data[self::$serializationScheme[0]];
-        $this->climberId = $data[self::$serializationScheme[1]];
-        $this->cragId = $data[self::$serializationScheme[2]];
-        $this->date = $data[self::$serializationScheme[3]];
-        $this->isEco = $data[self::$serializationScheme[4]];
-        $this->registrationDate = $data[self::$serializationScheme[5]];
-        $this->isActive = $data[self::$serializationScheme[6]];
-    }
-
-    public static function getSerializationScheme() : array {
-
-        return self::$serializationScheme;
-    }
 
     public function getId(){
         return $this->id;

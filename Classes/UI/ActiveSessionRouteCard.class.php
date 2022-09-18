@@ -1,9 +1,9 @@
 <?php namespace Sendstation\UI;
 
 include_once 'IDrawable.php';
-include_once 'Classes/Model/Route.class.php';
+include_once 'Classes/Crags/Model/Route.php';
 
-use Sendstation\Model\Route;
+use Sendstation\Crags\Model\Route;
 
 class ActiveSessionRouteCard implements IDrawable{
 
@@ -25,16 +25,16 @@ class ActiveSessionRouteCard implements IDrawable{
 
         echo "<div class=\"card " . $bgColor . " text-dark my-1 p-1\">" .
                 "<div class=\"row g-2 align-items-center justify-content-between text-center\">" .
-                    "<div class=\"col-md-6 text-left\">" .
+                    "<div class=\"col-md-6 col-8 text-left\">" .
                         "<h5>" . $this->route->getName() . "</h5>" .
                     "</div>" .
-                    "<div class=\"col-md-1 text-left\">" .
+                    "<div class=\"col-md-1 col-4 text-left\">" .
                         "<h5>" . $this->route->getGrade() . "</h5>" .
                     "</div>" .
-                    "<div class=\"col-md-2\">" .
+                    "<div class=\"col-md-2 col-8\">" .
                         "<h6>" . $this->numGoes . ($this->numGoes == 1 ? " Go" : " Goes") . "</h6>" .
                     "</div>" .
-                    "<div class=\"col-md-3\">" .
+                    "<div class=\"col-md-3 col-4\">" .
                         "<span>" .
                             "<button type=\"button\" class=\"btn btn-col2 text-light mx-2\" data-bs-toggle=\"modal\" data-bs-target=\"#addGoModal\" data-route-id=\"" . $this->route->getId() . "\" " . ($this->wasSent ? "disabled" : "") . ">Add Go</button>" .
                             //"<button type=\"button\" class=\"btn btn-secondary btn-close\"></button>" .

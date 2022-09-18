@@ -33,11 +33,6 @@ class GoesDataGateway extends DataGateway {
         catch (\mysql_sql_exception $e) { }
     }
 
-    public function getScheme() : array {
-
-        return Go::getSerializationScheme();
-    }
-
     public function findAll(){
         $goesData = parent::findAll();
 
@@ -175,6 +170,25 @@ class GoesDataGateway extends DataGateway {
 
         try {
 
+            $this->executeSQL($sql, $out, $climberId);
+
+            return $out;
+        }
+        catch (\mysql_sql_exception $e) { return false; }
+    }
+
+    public function findSendedRoutesCount($climberId) {
+        $sql = "SELECT id_crag, name, COUNT(sended) AS sends, COUNT(*) AS total 
+                FROM (SELECT DISTINCT c.id AS id_crag, c.name AS name, r.id AS id_route, g.send AS sended 
+                    FROM Crags AS c JOIN Routes AS r ON c.id = r.id_crag 
+                    LEFT JOIN (SELECT g.id_route as id_route, g.send as send FROM Goes AS g
+                        JOIN Sessions AS s ON g.id_session = s.id 
+                        WHERE send = TRUE AND s.id_climber = ?) AS g ON g.id_route = r.id) AS res 
+                GROUP BY id_crag, name
+                ORDER BY sends DESC";
+        
+
+        try{
             $this->executeSQL($sql, $out, $climberId);
 
             return $out;

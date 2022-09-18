@@ -2,9 +2,9 @@
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Classes/Model/Crag.class.php';
+include_once 'Classes/Crags/Model/Crag.php';
 
-use Sendstation\Model\Crag;
+use Sendstation\Crags\Model\Crag;
 
 class CragsDataGateway extends DataGateway {
 
@@ -26,11 +26,6 @@ class CragsDataGateway extends DataGateway {
             return $success;
         }
         catch (\mysql_sql_exception $e) { return false; }
-    }
-
-    public function getScheme() : array {
-
-        return Crag::getSerializationScheme();
     }
 
     public function findEntryById($id){

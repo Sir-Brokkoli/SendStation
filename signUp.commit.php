@@ -9,7 +9,6 @@ error_reporting(E_ALL);
 
 require_once('Classes/Database.class.php');
 include_once('Classes/Authentication/SignupRequest.class.php');
-include_once('DEBUG/DEBUG.php');
 
 session_start();
 
@@ -23,9 +22,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $sanitizedUsername = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
-    else{
-        DEBUG::Log("...No Username entered</br>");
-    }
 
     if(key_exists('email', $_POST)){
 
@@ -33,12 +29,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(!filter_var($sanitizedEmail, FILTER_VALIDATE_EMAIL)) {
             $sanitizedEmail = "";
-            DEBUG::Log("...No valid email adress</br>");
         }
         
-    }
-    else{
-        DEBUG::Log("...No email entered</br>");
     }
 
     if(key_exists('password', $_POST)){

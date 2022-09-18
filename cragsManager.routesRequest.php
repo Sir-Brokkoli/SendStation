@@ -4,16 +4,20 @@ ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 include_once 'Classes/Database.class.php';
+require_once 'Classes/Crags/CragRepositoryImpl.php';
+
 include_once 'Classes/UI/DataTable.class.php';
 include_once 'Classes/UI/Controller/CragsTableController.class.php';
 
 use Sendstation\Database\Database;
+use Sendstation\Crags\CragRepositoryImpl;
+
 use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
 $cragId = intval($_GET['q']);
 
-$crag = Database::getCragsDataGateway()->findEntryById($cragId);
+$crag = CragRepositoryImpl::getInstance()->findById($cragId);
 
 $gateway = Database::getRoutesDataGateway();
 $routes = $gateway->findRoutesInCrag($cragId);
