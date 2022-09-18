@@ -2,7 +2,7 @@
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Classes/Sessions/Model/Go.class.php';
+include_once 'Classes/Sessions/Model/Go.php';
 
 use Sendstation\Sessions\Model\Go;
 
