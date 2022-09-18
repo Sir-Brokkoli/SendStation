@@ -2,15 +2,14 @@
 namespace Sendstation\Database;
 
 include_once 'RoutesDataGateway.class.php';
-include_once 'CragsDataGateway.class.php';
 include_once 'SessionsDataGateway.class.php';
 include_once 'GoesDataGateway.class.php';
 include_once 'ConnectionMysql.class.php';
 
 class Database {
 
-    private function __construct(){}
-    private function __clone(){}
+private function __construct(){ /* Singleton */}
+private function __clone(){ /* Singleton */}
 
     public static function getRoutesDataGateway(){
         return new RoutesDataGateway(self::getConnection());
