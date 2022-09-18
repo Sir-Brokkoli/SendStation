@@ -87,5 +87,18 @@ class RouteRepositoryImpl extends SqlRepository implements IRouteRepository {
 
         return true;
     }
+
+    protected function rawDataToEntities($rawData) :array{
+        $routes = array();
+        while ($data = $rawData->fetch_assoc()){
+            array_push($routes, new Route($data['id'],
+                                        $data['name'],
+                                        $data['id_crag'],
+                                        $data['grade'],
+                                        $data['description']));
+        }
+
+        return $routes;
+    }
 }
 ?>
