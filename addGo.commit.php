@@ -4,7 +4,7 @@ ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 require_once('Classes/SessionHandler.class.php');
-include_once('Classes/Model/Go.class.php');
+include_once('Classes/Sessions/Model/Go.class.php');
 include_once('DEBUG/DEBUG.php');
 
 use Sendstation\Debugging\DEBUG;

@@ -1,7 +1,8 @@
-<?php
-namespace Sendstation\Sessions;
+<?php namespace Sendstation\Sessions;
 
-use Sendstation\Model\Go;
+require_once 'Classes/Sessions/Model/Go.php';
+
+use Sendstation\Session\Model\Go;
 
 /**
  * Implementation of a go repository using a SQL driven database.
