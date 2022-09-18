@@ -14,8 +14,6 @@ use Sendstation\Sessions\GoRepositoryImpl;
 
 class SessionHandler {
 
-    private static $goesDataGateway;
-
     public static function openGateway(){
         // Deprecated
     }

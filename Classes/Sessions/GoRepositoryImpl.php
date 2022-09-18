@@ -109,6 +109,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return null;
     }
 
+    /**
+     * Adds the given go to the persisted context.
+     */
     public function insert($go) :bool {
         $sql = "INSERT INTO {$this->tableName} (id_session, id_route, falls, send, toprope) VALUES (?,?,?,?,?)";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $go->getSessionId(), 
@@ -123,6 +126,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return true;
     }
 
+    /**
+     * Updates the given go in the persisted context.
+     */
     public function update($go) :bool {
         $sql = "UPDATE {$this->tableName} SET id_session = ?, id_route = ?, falls = ?, send = ?, toprope = ? WHERE id = ?";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $go->getSessionId(), 
@@ -138,6 +144,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return true;
     }
 
+    /**
+     * Removes all goes associated with the given session from the persisted context.
+     */
     public function deleteBySession($sessionId) :bool {
         $sql = "DELETE FROM {$this->tableName} WHERE id_session=?";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $sessionId)) {
@@ -148,6 +157,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return true;
     }
 
+    /**
+     * Removes all goes associated with the given route from the persisted context.
+     */
     public function deleteByRoute($routeId) :bool {
         $sql = "DELETE FROM {$this->tableName} WHERE id_route=?";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $routeId)) {
@@ -158,6 +170,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return true;
     }
     
+    /**
+     * Accumulates the data for the goes data sheet.
+     */
     public function accummulateGoesData($climberId) {
         $sql = "SELECT COUNT(*) AS goes, 
                     COUNT(DISTINCT g.id_session) AS sessions, 
@@ -173,6 +188,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return $data;
     }
 
+    /**
+     * Accumulates the number of sended routes for each crag for the given climber.
+     */
     public function accummulateSendCountPerCrag($climberId) {
         $sql = "SELECT id_crag, name, COUNT(sended) AS sends, COUNT(*) AS total 
                 FROM (SELECT DISTINCT c.id AS id_crag, c.name AS name, r.id AS id_route, g.send AS sended 
@@ -190,6 +208,9 @@ class GoRepositoryImpl extends SqlRepository implements IGoRepository {
         return $data;
     }
 
+    /**
+     * Converts the raw data to go instances.
+     */
     protected function rawDataToEntities($rawData) :array {
         $goes = array();
         while($data = $rawData->fetch_assoc()){
