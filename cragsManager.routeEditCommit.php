@@ -1,32 +1,26 @@
 <?php namespace Sendstation;
 
-use Sendstation\Crags\Model\Route;
-use Sendstation\Database\Database;
-
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/Database.class.php');
+require_once('Classes/Crags/RouteRepositoryImpl.php');
 include_once('Classes/Crags/Model/Route.php');
+
+use Sendstation\Crags\Model\Route;
+use Sendstation\Crags\RouteRepositoryImpl;
 
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    $routesGateway = Database::getRoutesDataGateway();
+    $repository = RouteRepositoryImpl::getInstance();
 
     //Authentication
     //$climberId = $_SESSION['id'];
 
     //Fetch input data
     $route;
-    if (key_exists('id', $_POST) && \is_numeric($_POST['id']) && $data = $routesGateway->findEntryById(intval($_POST['id']))) {
-
-        $data = $data->fetch_assoc();
-        $route = new Route($data['id'], $data['name'], $data['id_crag'], $data['grade'], $data['description']);
-    }
-    else {
-
+    if (!key_exists('id', $_POST) || !\is_numeric($_POST['id']) || !$route = $repository->findById(intval($_POST['id']))) {
         $route = new Route(null, null, null, null, null);
     }
 
@@ -51,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 
     // Register
-    $routesGateway->saveEntry($route);
+    $repository->save($route);
 
     header("location: cragsManager.php?id={$route->getCragId()}");
 }
