@@ -1,4 +1,4 @@
-<?php namespace Sendstation\Model;
+<?php namespace Sendstation\Sessions\Model;
 
 /**
  * The entity representing a climbing session.

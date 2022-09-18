@@ -1,7 +1,8 @@
-<?php
-namespace Sendstation\Sessions;
+<?php namespace Sendstation\Sessions;
 
-use Sendstation\Model\Session;
+require_once 'Classes/Sessions/Model/Session.php';
+
+use Sendstation\Sessions\Model\Session;
 
 /**
  * Implementation of a session repository using a SQL driven database.

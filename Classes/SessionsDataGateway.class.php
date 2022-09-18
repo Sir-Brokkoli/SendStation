@@ -2,9 +2,9 @@
 
 include_once 'DataGateway.class.php';
 include_once 'config.php';
-include_once 'Classes/Model/Session.class.php';
+include_once 'Classes/Sessions/Model/Session.php';
 
-use Sendstation\Model\Session;
+use Sendstation\Sessions\Model\Session;
 
 class SessionsDataGateway extends DataGateway {
 

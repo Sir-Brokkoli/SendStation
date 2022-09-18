@@ -8,7 +8,7 @@ ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 include_once 'Classes/Database.class.php';
-include_once 'Classes/Model/Session.class.php';
+include_once 'Classes/Sessions/Model/Session.php';
 require_once 'Classes/SessionHandler.class.php';
 require_once 'Classes/CragHandler.class.php';
 require_once 'Classes/UI/ActiveSessionRouteCard.class.php';
