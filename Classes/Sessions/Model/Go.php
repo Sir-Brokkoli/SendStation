@@ -1,9 +1,13 @@
 <?php namespace Sendstation\Sessions\Model;
 
+require_once 'Classes/Database/IEntity.php';
+
+use Sendstation\Database\IEntity;
+
 /**
  * The entity representing the data of a go during a session.
  */
-class Go {
+class Go implements IEntity {
 
     private $id;
     private $sessionId;
