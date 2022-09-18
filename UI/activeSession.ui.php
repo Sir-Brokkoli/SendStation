@@ -14,9 +14,6 @@ require_once 'Classes/CragHandler.class.php';
 require_once 'Classes/UI/ActiveSessionRouteCard.class.php';
 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
-
-    $goesDataGateway = Database::getGoesDataGateway();
-
     $climberId = $_SESSION['id'];
     SessionHandler::openGateway();
     $session = SessionHandler::getActiveSessionOf($climberId);
