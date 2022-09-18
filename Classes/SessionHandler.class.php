@@ -2,68 +2,58 @@
 
 require_once 'Classes/Sessions/Model/Session.php';
 require_once 'Classes/Sessions/Model/Go.php';
+require_once 'Classes/Sessions/SessionRepositoryImpl.php';
 require_once 'Database.class.php';
 
 use Sendstation\Database\Database;
 use Sendstation\Sessions\Model\Session;
 use Sendstation\Sessions\Model\Go;
+use Sendstation\Sessions\SessionRepositoryImpl;
 
 class SessionHandler {
 
-    private static $sessionsDataGateway;
     private static $goesDataGateway;
 
     public static function openGateway(){
-
-        self::$sessionsDataGateway = Database::getSessionsDataGateway();
         self::$goesDataGateway = Database::getGoesDataGateway();
     }
 
     public static function getActiveSessionOf($climberId){
-
-        return self::$sessionsDataGateway->findActiveSession($climberId);
+        return SessionRepositoryImpl::getInstance()->findActiveSessionByClimber($climberId);
     }
 
     public static function startActiveSession($climberId, $cragId, $isEco){
-
         $session = new Session(null,
-                            $climberId, 
-                            $cragId, 
-                            date_create()->format('Y-m-d'), 
-                            $isEco,
-                            null,
-                            true);
+                        $climberId, 
+                        $cragId, 
+                        date_create()->format('Y-m-d'), 
+                        $isEco,
+                        null, true);
 
-        return self::$sessionsDataGateway->saveEntry($session);
+        return SessionRepositoryImpl::getInstance()->save($session);
     }
 
     public static function finishActiveSession($session){
-
         if($session->isActive()) {
             $session->finish();
-
-            return self::$sessionsDataGateway->saveEntry($session);
+            return SessionRepositoryImpl::getInstance()->save($session);
         }
-        
         return false;
     }
 
     public static function finishActiveSessionOf($climberId){
-
         if($session = self::getActiveSessionOf($climberId)){
             return self::finishActiveSession($session);
         }
-        
         return false;
     }
 
     public static function discardActiveSession($session){
-
         try{
-            Database::beginTransaction();
+            //Database::beginTransaction();
             self::$goesDataGateway->deleteGoesInSession($session);
-            self::$sessionsDataGateway->deleteEntry($session);
-            Database::commitTransaction();
+            SessionRepositoryImpl::getInstance()->delete($session);
+            //Database::commitTransaction();
         }
         catch (\mysql_sql_exception $e){
             Database::rollbackTransaction();
@@ -73,32 +63,27 @@ class SessionHandler {
         return true;
     }
 
-    public static function discardActiveSessionOf($climberId){
-
+    public static function discardActiveSessionOf($climberId) {
         if($session = self::getActiveSessionOf($climberId)) {
             return self::discardActiveSession($session);
         }
-
         return false;
     }
 
-    public static function registerSession($session){
-
-        return self::$sessionsDataGateway->saveEntry($session);
+    public static function registerSession($session) {
+        return SessionRepositoryImpl::getInstance()->save($session);
     }
 
-    public static function getGoesOfActiveSession($session){
-
+    public static function getGoesOfActiveSession($session) {
         return self::$goesDataGateway->findGoesInSession($session);
     }
 
-    public static function getGoesOfSessionInRoute($session, $route){
+    public static function getGoesOfSessionInRoute($session, $route) {
         $gateway = Database::getGoesDataGateway();
         return $gateway->findGoesOfSessionInRoute($session, $route);
     }
 
-    public static function registerGoFor($climberId, $routeId, $falls, $send, $toprope){
-
+    public static function registerGoFor($climberId, $routeId, $falls, $send, $toprope) {
         if($session = self::getActiveSessionOf($climberId)){
             $go = new Go(null, $session->getId(), $routeId, $falls, $send, $toprope);
             return self::$goesDataGateway->saveEntry($go);
@@ -107,17 +92,15 @@ class SessionHandler {
         return false;
     }
 
-    public static function routeSentBy($climberId, $route){
-        
+    public static function routeSentBy($climberId, $route) {
         $gateway = Database::getGoesDataGateway();
         return $gateway->findSendGo($climberId, $route);
     }
 
-    public static function routeTopropedBy($climberId, $route){
+    public static function routeTopropedBy($climberId, $route) {
         $gateway = Database::getGoesDataGateway();
         return $gateway->findTopropeGo($climberId, $route);
     }
-
 }
 
 ?>

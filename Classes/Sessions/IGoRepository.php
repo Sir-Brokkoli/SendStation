@@ -11,6 +11,7 @@ interface IGoRepository extends IRepository {
     function findSendGoByClimberAndRoute($climberId, $routeId);
     function findTopropeGoByClimberAndRoute($climberId, $routeId);
 
+    function deleteByRoute($routeId);
     function deleteBySession($sessionId);
     
     function accummulateGoesData($climberId);

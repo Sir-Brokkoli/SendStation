@@ -18,6 +18,9 @@ class SessionRepositoryImpl extends SqlRepository implements ISessionRepository 
         parent::__construct("Sessions");
     }
 
+    /**
+     * Returns the singleton instance of the session repository.
+     */
     public static function getInstance() {
         if (self::$instance == null) {
             self::$instance = new SessionRepositoryImpl();
@@ -25,9 +28,12 @@ class SessionRepositoryImpl extends SqlRepository implements ISessionRepository 
         return self::$instance;
     }
 
+    /**
+     * Returns the active session of the given climber or null if non found.
+     */
     public function findActiveSessionByClimber($climberId) :?Session {
-        $sql = "SELECT * FROM {$this->tableName} WHERE nickname=?";
-        if (!$this->connection->executeSqlQuery($sql, $rawData, $username)) {
+        $sql = "SELECT * FROM {$this->tableName} WHERE id_climber=? AND is_active=1";
+        if (!$this->connection->executeSqlQuery($sql, $rawData, $climberId)) {
             // TODO: Exception management
         }
 
@@ -37,8 +43,11 @@ class SessionRepositoryImpl extends SqlRepository implements ISessionRepository 
         return $this->rawDataToEntities($rawData)[0];
     }
 
+    /**
+     * Adds the session to the persited context.
+     */
     public function insert($session) :bool {
-        $sql = "INSERT INTO {$this->getTableName()} (id_climber, id_crag, date, is_eco, is_active) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO {$this->tableName} (id_climber, id_crag, date, is_eco, is_active) VALUES (?,?,?,?,?)";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $session->getClimberId(), 
                                                                 $session->getCragId(),
                                                                 $session->getDate(),
@@ -51,6 +60,9 @@ class SessionRepositoryImpl extends SqlRepository implements ISessionRepository 
         return true;
     }
 
+    /**
+     * Updates the given session in the persisted context.
+     */
     public function update($session) :bool {
         $sql = "UPDATE {$this->tableName} SET id_crag = ?, date = ?, is_eco = ?, is_active = ? WHERE id = ?";
         if (!$this->connection->executeSqlQuery($sql, $rawData, $session->getCragId(), 
@@ -65,6 +77,9 @@ class SessionRepositoryImpl extends SqlRepository implements ISessionRepository 
         return true;
     }
 
+    /**
+     * Converts the raw data array to an array of sessions.
+     */
     protected function rawDataToEntities($rawData) :array {
         $sessions = array();
         while($data = $rawData->fetch_assoc()){
