@@ -39,7 +39,7 @@ class ClimberRepositoryImpl extends SqlRepository implements IClimberRepository 
         if ($rawData->num_rows == 0) {
             return null;
         }
-        return self::rawDataToEntities($rawData)[0];
+        return $this->rawDataToEntities($rawData)[0];
     }
 
     public function findByUsername(string $username) :?Climber {
@@ -51,7 +51,7 @@ class ClimberRepositoryImpl extends SqlRepository implements IClimberRepository 
         if ($rawData->num_rows == 0) {
             return null;
         }
-        return self::rawDataToEntities($rawData)[0];
+        return $this->rawDataToEntities($rawData)[0];
     }
 
     public function insert($climber) :bool {

@@ -2,9 +2,11 @@
 
 require_once 'Database.class.php';
 require_once 'Classes/Crags/CragRepositoryImpl.php';
+require_once 'Classes/Crags/RouteRepositoryImpl.php';
 
 use Sendstation\Database\Database;
 use Sendstation\Crags\CragRepositoryImpl;
+use Sendstation\Crags\RouteRepositoryImpl;
 
 class CragHandler{
     
@@ -17,9 +19,7 @@ class CragHandler{
     }
 
     public static function getRoutesInCrag($crag){
-        $gateway = Database::getRoutesDataGateway();
-        return $gateway->findRoutesInCrag($crag->getId());
+        return RouteRepositoryImpl::getInstance()->findByCrag($crag->getId());
     }
 }
-
 ?>

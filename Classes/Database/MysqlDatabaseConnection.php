@@ -32,7 +32,7 @@ class MysqlDatabaseConnection implements ISqlDatabaseConnection {
     }
 
     /**
-     * 
+     * Executes the given SQL querry and returns its result in the outputData parameter.
      */
     public function executeSqlQuery(string $sql, &$outputData, ... $params) :bool {
         $stmt = $this->conn->prepare($sql);

@@ -8,12 +8,8 @@ include_once 'ConnectionMysql.class.php';
 
 class Database {
 
-private function __construct(){ /* Singleton */}
-private function __clone(){ /* Singleton */}
-
-    public static function getRoutesDataGateway(){
-        return new RoutesDataGateway(self::getConnection());
-    }
+    private function __construct(){ /* Singleton */}
+    private function __clone(){ /* Singleton */}
 
     public static function getSessionsDataGateway(){
         return new SessionsDataGateway(self::getConnection());
