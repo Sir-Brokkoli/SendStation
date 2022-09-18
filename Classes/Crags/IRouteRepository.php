@@ -9,7 +9,7 @@ use Sendstation\Database\IRepository;
  * Interface extension of a crud repository for a repository concerning route entities.
  */
 interface IRouteRepository extends IRepository {
-    function findByCrag($cragId);
-    function deleteByCrag($cragId);
+    function findByCrag($cragId) :array;
+    function deleteByCrag($cragId) :bool;
 }
 ?>
