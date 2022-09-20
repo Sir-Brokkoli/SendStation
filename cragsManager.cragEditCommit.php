@@ -1,13 +1,13 @@
 <?php namespace Sendstation;
 
 use Sendstation\Crags\Model\Crag;
-use Sendstation\CragHandler;
+use Sendstation\Crags\CragServiceImpl;
 use Sendstation\Security\AuthenticationFailureException;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/CragHandler.class.php');
+require_once('Classes/Crags/CragServiceImpl.php');
 include_once('Classes/Crags/Model/Crag.php');
 
 session_start();
@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     //Fetch input data
     $crag = null;
     if (key_exists('id', $_POST) && \is_numeric($_POST['id'])) {
-        $crag = CragHandler::getCragById(intval($_POST['id']));
+        $crag = CragServiceImpl::getCragById(intval($_POST['id']));
     }
 
     if ($crag == null) {
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     // Register
     try {
-        CragHandler::saveCrag($crag);
+        CragServiceImpl::saveCrag($crag);
     }
     catch (AuthenticationFailureException $e) {
         echo $e->getRequiredAuthorization();

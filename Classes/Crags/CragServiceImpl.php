@@ -14,7 +14,7 @@ use Sendstation\Security\AuthenticationProvider;
 /**
  * Service for the management of the entities of the Crags component.
  */
-class CragHandler{
+class CragServiceImpl{
     
     /**
      * Returns an array of all crags registered.
