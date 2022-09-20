@@ -4,10 +4,10 @@ ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
 include_once 'Classes/UI/ProgressDataSheet.class.php';
-include_once 'Classes/Users/ClimberRepositoryImpl.php';
+include_once 'Classes/Users/ClimberServiceImpl.php';
 
 use Sendstation\UI\ProgressDataSheet;
-use Sendstation\Users\ClimberRepositoryImpl;
+use Sendstation\Users\ClimberServiceImpl;
 
 \session_start();
 
@@ -29,7 +29,7 @@ else {
     die();
 }
 
-$displayedClimber = ClimberRepositoryImpl::getInstance()->findById($id);
+$displayedClimber = ClimberServiceImpl::getInstance()->getClimberById($id);
 
 include('Style/header.php'); ?>
 
