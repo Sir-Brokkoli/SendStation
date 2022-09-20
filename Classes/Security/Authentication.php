@@ -17,6 +17,9 @@ class Authentication implements IAuthenticationService {
         // Singleton
     }
 
+    /**
+     * Returns the singleton instance and instanciates it if neccessary.
+     */
     public static function getInstance() :IAuthenticationService {
         if(self::$instance == null) {
             self::$instance = new Authentication();
@@ -86,7 +89,7 @@ class Authentication implements IAuthenticationService {
         }
     }
 
-        /**
+    /**
      * Checks whether the logged user has the given id.
      */
     public function checkForLoggedUserId(int $userId) :bool {
