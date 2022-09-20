@@ -19,6 +19,10 @@ interface ICragService {
      */
     public function getCragById(int $cragId) :?Crag;
     /**
+     * Returns the route with the given id or null if none found.
+     */
+    public function getRouteById(int $routeId) :?Route;
+    /**
      * Returns all routes associated with the given crag.
      */
     public function getRoutesInCrag(Crag $crag) :array;

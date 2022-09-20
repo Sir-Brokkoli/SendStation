@@ -5,6 +5,7 @@ require_once 'Classes/Crags/RouteRepositoryImpl.php';
 require_once 'Classes/Security/AuthenticationProvider.php';
 
 use Sendstation\Crags\Model\Crag;
+use Sendstation\Crags\Model\Route;
 use Sendstation\Crags\CragRepositoryImpl;
 use Sendstation\Crags\RouteRepositoryImpl;
 use Sendstation\Security\AuthenticationProvider;
@@ -43,6 +44,13 @@ class CragServiceImpl{
      */
     public function getCragById(int $cragId) :?Crag{
         return CragRepositoryImpl::getInstance()->findById($cragId);
+    }
+
+    /**
+     * Returns the route with the given id or null if none found.
+     */
+    public function getRouteById(int $routeId) :?Route {
+        return RouteRepositoryImpl::getInstance()->findById($routeId);
     }
 
     /**

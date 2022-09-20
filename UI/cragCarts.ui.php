@@ -7,6 +7,8 @@ require_once 'Classes/UI/CragCard.class.php';
 
 use Sendstation\UI\CragCard;
 
+use Sendstation\Crags\CragServiceImpl;
+
 $crags = CragServiceImpl::getInstance()->getCrags();
 
 echo "<div class=\"row text-center g-5\">";

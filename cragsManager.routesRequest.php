@@ -3,23 +3,21 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once 'Classes/Crags/CragRepositoryImpl.php';
-require_once 'Classes/Crags/RouteRepositoryImpl.php';
+require_once 'Classes/Crags/CragServiceImpl.php';
 
 include_once 'Classes/UI/DataTable.class.php';
 include_once 'Classes/UI/Controller/CragsTableController.class.php';
 
-use Sendstation\Crags\CragRepositoryImpl;
-use Sendstation\Crags\RouteRepositoryImpl;
+use Sendstation\Crags\CragServiceImpl;
 
 use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
 $cragId = intval($_GET['q']);
 
-$crag = CragRepositoryImpl::getInstance()->findById($cragId);
+$crag = CragServiceImpl::getInstance()->getCragById($cragId);
 
-$routes = RouteRepositoryImpl::getInstance()->findByCrag($cragId);
+$routes = CragServiceImpl::getInstance()->getRoutesInCrag($crag);
 
 $columnScheme = ['id', 'name', 'grade', 'description'];
 

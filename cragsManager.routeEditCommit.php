@@ -3,49 +3,40 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/Crags/RouteRepositoryImpl.php');
+require_once('Classes/Crags/CragServiceImpl.php');
 include_once('Classes/Crags/Model/Route.php');
 
 use Sendstation\Crags\Model\Route;
-use Sendstation\Crags\RouteRepositoryImpl;
+use Sendstation\Crags\CragServiceImpl;
 
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    $repository = RouteRepositoryImpl::getInstance();
+    $route = null;
+    if (!key_exists('id', $_POST) || !\is_numeric($_POST['id']) 
+        || !$route = CragServiceImpl::getInstance()->getRouteById(intval($_POST['id']))) {
 
-    //Authentication
-    //$climberId = $_SESSION['id'];
-
-    //Fetch input data
-    $route;
-    if (!key_exists('id', $_POST) || !\is_numeric($_POST['id']) || !$route = $repository->findById(intval($_POST['id']))) {
         $route = new Route(null, null, null, null, null);
     }
 
     if (key_exists('name', $_POST)) {
-
         $route->setName($_POST['name']);
     }
 
     if (key_exists('description', $_POST)) {
-
         $route->setDescription($_POST['description']);
     }
 
     if (key_exists('grade', $_POST)) {
-
         $route->setGrade($_POST['grade']);
     }
 
     if (key_exists('cragId', $_POST) && \is_numeric($_POST['cragId']) && $route->getCragId() == null) {
-
         $route->setCragId(intval($_POST['cragId']));
     }
 
-    // Register
-    $repository->save($route);
+    CragServiceImpl::getInstance()->saveRoute($route);
 
     header("location: cragsManager.php?id={$route->getCragId()}");
 }
