@@ -1,15 +1,14 @@
 <?php namespace Sendstation\UI\Controller;
 
 include_once 'IDataTableController.class.php';
-include_once 'Classes/Crags/CragRepositoryImpl.php';
+include_once 'Classes/Crags/CragServiceImpl.php';
 
-use Sendstation\Crags\CragRepositoryImpl;
+use Sendstation\Crags\CragServiceImpl;
 
 class CragsTableController implements IDataTableController {
 
     private static $scheme = array("cragId", "name", "description");
 
-    private int $pageSize = 20;
     private int $page;
 
     private $data;
@@ -19,7 +18,7 @@ class CragsTableController implements IDataTableController {
 
         $this->page = $page;
 
-        $this->data = CragRepositoryImpl::getInstance()->findAll();
+        $this->data = CragServiceImpl::getInstance()->getCrags();
         $this->cursor = 0;
     }
 

@@ -3,6 +3,7 @@
 use Sendstation\UI\ActiveSessionRouteCard;
 use Sendstation\Database\ConnectionMysql;
 use Sendstation\Database\Database;
+use Sendstation\Crags\CragServiceImpl;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
@@ -10,7 +11,7 @@ error_reporting(E_ALL);
 include_once 'Classes/Database.class.php';
 include_once 'Classes/Sessions/Model/Session.php';
 require_once 'Classes/SessionHandler.class.php';
-require_once 'Classes/CragHandler.class.php';
+require_once 'Classes/Crags/CragServiceImpl.php';
 require_once 'Classes/UI/ActiveSessionRouteCard.class.php';
 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
@@ -20,7 +21,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
 
     if($session != null && $session){
 
-        $crag = CragHandler::getCragById($session->getCragId());
+        $crag = CragServiceImpl::getInstance()->getCragById($session->getCragId());
 
         echo "<div>";
         echo "<div class=\"row g-2 align-items-center justify-content-between text-center\">";
@@ -29,7 +30,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
         echo "<button class=\"btn btn-secondary my-2 mx-3\" data-bs-toggle=\"modal\" data-bs-target=\"#delActiveSessionModal\"> Discard session</button></div>";
         echo "</div>";
         
-        $routes = CragHandler::getRoutesInCrag($crag);
+        $routes = CragServiceImpl::getInstance()->getRoutesInCrag($crag);
 
         foreach($routes as $route){
             $numGoes = 0;

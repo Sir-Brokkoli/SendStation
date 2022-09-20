@@ -3,7 +3,7 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-include_once 'Classes/Crags/CragRepositoryImpl.php';
+include_once 'Classes/Crags/CragServiceImpl.php';
 
 include_once 'Classes/UI/DataTable.class.php';
 include_once 'Classes/UI/Controller/CragsTableController.class.php';
@@ -11,7 +11,7 @@ include_once 'Classes/UI/Controller/CragsTableController.class.php';
 use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
-use Sendstation\Crags\CragRepositoryImpl;
+use Sendstation\Crags\CragServiceImpl;
 
 include('Style/header.php');
 
@@ -23,7 +23,7 @@ if($tableController == null) {
 
 $id = (\key_exists('id', $_GET) && \is_numeric($_GET['id'])) ? $_GET['id'] : "";
 
-$crags = CragRepositoryImpl::getInstance()->findAll();
+$crags = CragServiceImpl::getInstance()->getCrags();
 ?>
 
 <div class="d-flex flex-column flex-fill bgTrain">
