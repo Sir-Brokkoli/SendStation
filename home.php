@@ -1,9 +1,10 @@
-<?php 
-namespace Sendstation;
-
-include('Style/header.php');
+<?php namespace Sendstation;
 
 require_once('Classes/Crags/CragServiceImpl.php'); 
+
+use Sendstation\Crags\CragServiceImpl;
+
+include('Style/header.php');
 
 ?>
 
@@ -97,7 +98,7 @@ require_once('Classes/Crags/CragServiceImpl.php');
                         <select class="form-control" name="crag" id="inputCrag">
                             <option value="-1"> --- </option>
                             <?php
-                            $crags = CragServiceImpl::getCrags();
+                            $crags = CragServiceImpl::getInstance()->getCrags();
 
                             foreach($crags as $crag){
                                 echo "<option value=\"" . $crag->getId() . "\">";

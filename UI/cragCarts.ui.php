@@ -7,13 +7,13 @@ require_once 'Classes/UI/CragCard.class.php';
 
 use Sendstation\UI\CragCard;
 
-$crags = CragServiceImpl::getCrags();
+$crags = CragServiceImpl::getInstance()->getCrags();
 
 echo "<div class=\"row text-center g-5\">";
 
 foreach($crags as $crag) {
 
-    $routes = CragServiceImpl::getRoutesInCrag($crag);
+    $routes = CragServiceImpl::getInstance()->getRoutesInCrag($crag);
 
     $cragCard = new CragCard($crag, $routes);
     $cragCard->draw();

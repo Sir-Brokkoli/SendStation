@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     //Fetch input data
     $crag = null;
     if (key_exists('id', $_POST) && \is_numeric($_POST['id'])) {
-        $crag = CragServiceImpl::getCragById(intval($_POST['id']));
+        $crag = CragServiceImpl::getInstance()->getCragById(intval($_POST['id']));
     }
 
     if ($crag == null) {
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     // Register
     try {
-        CragServiceImpl::saveCrag($crag);
+        CragServiceImpl::getInstance()->saveCrag($crag);
     }
     catch (AuthenticationFailureException $e) {
         echo $e->getRequiredAuthorization();
