@@ -1,5 +1,9 @@
 <?php namespace Sendstation\Users;
 
+require_once 'Classes/Users/Model/Climber.php';
+
+use Sendstation\Users\Model\Climber;
+
 /**
  * Interface for a service concerning user data.
  */
@@ -14,7 +18,7 @@ interface IClimberService {
      * Returns the climber with the given id or throws Exception if no such 
      * element was found.
      */
-    public function getClimberById(int $climberId) :Climber;
+    public function getClimberById(int $climberId) :?Climber;
     /**
      * Checks whether the given email address is already in use. Returns the
      * corresponding climber as reference argument if found.

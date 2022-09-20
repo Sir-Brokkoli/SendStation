@@ -8,6 +8,20 @@ use Sendstation\Users\Model\Climber;
 use Sendstation\Security\AuthenticationProvider;
 
 class ClimberServiceImpl implements IClimberService {
+
+    private static $instance;
+
+    private function __construct() {
+        // Singleton
+    }
+
+    public static function getInstance() : IClimberService {
+        if (self::$instance == null) {
+            self::$instance = new ClimberServiceImpl();
+        }
+        return self::$instance;
+    }
+
     /**
      * Returns an array of all climbers. 
      * 
