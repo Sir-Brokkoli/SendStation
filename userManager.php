@@ -3,20 +3,25 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-include_once 'Classes/Users/ClimberRepositoryImpl.php';
+include_once 'Classes/Users/ClimberServiceImpl.php';
 
 include_once 'Classes/UI/DataTable.class.php';
 include_once 'Classes/UI/Controller/CragsTableController.class.php';
 
+require_once 'Classes/Security/AuthenticationFailureException.php';
+
 use Sendstation\UI\DataTable;
 use Sendstation\UI\Controller\CragsTableController;
 
-use Sendstation\Users\ClimberRepositoryImpl;
+use Sendstation\Users\ClimberServiceImpl;
+
+use Sendstation\Security\AuthenticationFailureException;
 
 include('Style/header.php');
-
-$climbers = ClimberRepositoryImpl::getInstance()->findAll();
-
+$climbers;
+try {
+    $climbers = ClimberServiceImpl::getInstance()->getAllClimbers();
+} catch (AuthenticationFailureException $e) { $climbers = array(); }
 ?>
 
 <div class="d-flex flex-column flex-fill bgTrain">
