@@ -1,19 +1,18 @@
 <?php namespace Sendstation;
 
 use Sendstation\Crags\Model\Crag;
-use Sendstation\Crags\CragRepositoryImpl;
+use Sendstation\CragHandler;
+use Sendstation\Security\AuthenticationFailureException;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/Crags/CragRepositoryImpl.php');
+require_once('Classes/CragHandler.class.php');
 include_once('Classes/Crags/Model/Crag.php');
 
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-    $repository = CragRepositoryImpl::getInstance();
 
     //Authentication
     //$climberId = $_SESSION['id'];
@@ -21,27 +20,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     //Fetch input data
     $crag = null;
     if (key_exists('id', $_POST) && \is_numeric($_POST['id'])) {
-
-        $crag = $repository->findById(intval($_POST['id']));
+        $crag = CragHandler::getCragById(intval($_POST['id']));
     }
 
     if ($crag == null) {
-
         $crag = new Crag(null, null, null);
     }
 
     if (key_exists('name', $_POST)) {
-
         $crag->setName($_POST['name']);
     }
 
     if (key_exists('description', $_POST)) {
-
         $crag->setDescription($_POST['description']);
     }
 
     // Register
-    $repository->save($crag);
+    try {
+        CragHandler::saveCrag($crag);
+    }
+    catch (AuthenticationFailureException $e) {
+        echo $e->getRequiredAuthorization();
+        die();
+    }
 
     header("location: cragsManager.php?id={$crag->getId()}");
 }
