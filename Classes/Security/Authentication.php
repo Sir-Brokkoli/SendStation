@@ -37,12 +37,12 @@ class Authentication implements IAuthenticationService {
         $sql = "SELECT COUNT(*) AS admin 
                 FROM (
                     SELECT * 
-                    FROM {self::$tableName} 
+                    FROM {$tableName} 
                     WHERE id=? AND admin=1
                 ) AS res";
 
         return MysqlDatabaseConnection::getInstance()->executeSqlQuery($sql, $result, $loggedId)
-            && $result['admin'] = 1;
+            && $result->fetch_assoc()['admin'] = 1;
     }
 
     /**
@@ -68,7 +68,7 @@ class Authentication implements IAuthenticationService {
         $sql = "SELECT COUNT(*) AS manager 
                 FROM (
                     SELECT * 
-                    FROM {self::$tableName} 
+                    FROM {$tableName} 
                     WHERE id=? AND admin=1
                 ) AS res";
 

@@ -18,7 +18,7 @@ interface IAuthenticationResult {
     /**
      * Finish authentication.
      */
-    public function finish() :void;
+    public function finishAuthentication() :void;
 }
 
 ?>

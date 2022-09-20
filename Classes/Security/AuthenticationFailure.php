@@ -27,7 +27,7 @@ class AuthenticationFailure implements IAuthenticationResult {
     /**
      * Throw failure.
      */
-    public function finish() :void {
+    public function finishAuthentication() :void {
         throw new AuthenticationFailureException($this->failedAuthentication);
     }
 }

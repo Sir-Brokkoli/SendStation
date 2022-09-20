@@ -4,7 +4,7 @@
  * Thrown if the authentication process failed due to lack of
  * authority.
  */
-class AuthenticationFailureException extends Exception {
+class AuthenticationFailureException extends \Exception {
 
     public function __construct(private string $required) { }
 

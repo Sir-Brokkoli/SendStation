@@ -25,7 +25,7 @@ class AuthenticationSuccess implements IAuthenticationResult {
     /**
      * Finish authentication.
      */
-    public function finish() {
+    public function finishAuthentication() :void {
         // Nothing to do, successful authentication
     }
 }
