@@ -1,13 +1,11 @@
 <?php
 namespace Sendstation;
 
-use Sendstation\Database\Database;
 use Sendstation\Authentication\SignupRequest;
 
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/Database.class.php');
 include_once('Classes/Authentication/SignupRequest.class.php');
 
 session_start();
