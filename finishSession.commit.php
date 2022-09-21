@@ -1,10 +1,10 @@
-<?php
-namespace Sendstation;
-
+<?php namespace Sendstation;
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/SessionHandler.class.php');
+require_once('Classes/Sessions/SessionServiceImpl.php');
+
+use Sendstation\Sessions\SessionServiceImpl;
 
 session_start();
 
@@ -12,8 +12,8 @@ if(isset($_SESSION['id'])){
 
     $climberId = $_SESSION['id'];
 
-    SessionHandler::openGateway();
-    SessionHandler::finishActiveSessionOf($climberId);
+    SessionServiceImpl::openGateway();
+    SessionServiceImpl::finishActiveSessionOf($climberId);
 
     header("location: home.php");
 }

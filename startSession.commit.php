@@ -1,6 +1,4 @@
-<?php
-namespace Sendstation;
-
+<?php namespace Sendstation;
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
@@ -8,8 +6,10 @@ error_reporting(E_ALL);
 // TODO: Implement response in case of invalid input
 //
 
-require_once('Classes/SessionHandler.class.php');
+require_once('Classes/Sessions/SessionServiceImpl.php');
 include_once('DEBUG/DEBUG.php');
+
+use Sendstation\Sessions\SessionServiceImpl;
 
 session_start();
 
@@ -21,8 +21,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     */
 
     //Is there already an active session registered?
-    SessionHandler::openGateway();
-    if(SessionHandler::getActiveSessionOf($climberId)){
+    SessionServiceImpl::openGateway();
+    if(SessionServiceImpl::getActiveSessionOf($climberId)){
         // TODO: Implement response mechanism
     }
 
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $eco = $_POST['eco'] == "on";
     }
 
-    SessionHandler::startActiveSession($climberId, $cragId, $eco);
+    SessionServiceImpl::startActiveSession($climberId, $cragId, $eco);
     
     header("location: home.php");
 }

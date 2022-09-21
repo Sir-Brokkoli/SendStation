@@ -1,23 +1,20 @@
 <?php namespace Sendstation;
-
-use Sendstation\UI\ActiveSessionRouteCard;
-use Sendstation\Database\ConnectionMysql;
-use Sendstation\Database\Database;
-use Sendstation\Crags\CragServiceImpl;
-
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-include_once 'Classes/Database.class.php';
-include_once 'Classes/Sessions/Model/Session.php';
-require_once 'Classes/SessionHandler.class.php';
+require_once 'Classes/Sessions/Model/Session.php';
+require_once 'Classes/Sessions/SessionServiceImpl.php';
 require_once 'Classes/Crags/CragServiceImpl.php';
 require_once 'Classes/UI/ActiveSessionRouteCard.class.php';
 
+use Sendstation\UI\ActiveSessionRouteCard;
+use Sendstation\Crags\CragServiceImpl;
+use Sendstation\Sessions\SessionServiceImpl;
+
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     $climberId = $_SESSION['id'];
-    SessionHandler::openGateway();
-    $session = SessionHandler::getActiveSessionOf($climberId);
+    SessionServiceImpl::openGateway();
+    $session = SessionServiceImpl::getActiveSessionOf($climberId);
 
     if($session != null && $session){
 
@@ -34,11 +31,11 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
 
         foreach($routes as $route){
             $numGoes = 0;
-            $wasSent = SessionHandler::routeSentBy($climberId, $route);
-            $wasToproped = SessionHandler::routeTopropedBy($climberId, $route);
+            $wasSent = SessionServiceImpl::routeSentBy($climberId, $route);
+            $wasToproped = SessionServiceImpl::routeTopropedBy($climberId, $route);
 
             //Fetch goes data
-            if($goes = SessionHandler::getGoesOfSessionInRoute($session, $route)){
+            if($goes = SessionServiceImpl::getGoesOfSessionInRoute($session, $route)){
                 $numGoes = count($goes);
             }
 

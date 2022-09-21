@@ -1,18 +1,16 @@
-<?php namespace Sendstation;
+<?php namespace Sendstation\Sessions;
 
 require_once 'Classes/Sessions/Model/Session.php';
 require_once 'Classes/Sessions/Model/Go.php';
 require_once 'Classes/Sessions/SessionRepositoryImpl.php';
 require_once 'Classes/Sessions/GoRepositoryImpl.php';
-require_once 'Database.class.php';
 
-use Sendstation\Database\Database;
 use Sendstation\Sessions\Model\Session;
 use Sendstation\Sessions\Model\Go;
 use Sendstation\Sessions\SessionRepositoryImpl;
 use Sendstation\Sessions\GoRepositoryImpl;
 
-class SessionHandler {
+class SessionServiceImpl {
 
     public static function openGateway(){
         // Deprecated
@@ -55,7 +53,6 @@ class SessionHandler {
             SessionRepositoryImpl::getInstance()->delete($session);
         }
         catch (\mysql_sql_exception $e){
-            Database::rollbackTransaction();
             return false;
         }
 

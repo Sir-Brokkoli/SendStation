@@ -3,9 +3,10 @@
 ini_set ("display_errors", "1");
 error_reporting(E_ALL);
 
-require_once('Classes/SessionHandler.class.php');
-include_once('Classes/Sessions/Model/Go.php');
+require_once('Classes/Sessions/SessionServiceImpl.php');
 include_once('DEBUG/DEBUG.php');
+
+use Sendstation\Sessions\SessionServiceImpl;
 
 use Sendstation\Debugging\DEBUG;
 
@@ -24,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $toprope = false;
     if(key_exists('toprope', $_POST)){
-        echo($_POST['toprope']);
+        echo $_POST['toprope'];
         $toprope = $_POST['toprope'] == "on";
     }
 
@@ -42,8 +43,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 
     // Register
-    SessionHandler::openGateway();
-    if(SessionHandler::registerGoFor($climberId, $routeId, $falls, $send, $toprope)){
+    SessionServiceImpl::openGateway();
+    if(SessionServiceImpl::registerGoFor($climberId, $routeId, $falls, $send, $toprope)){
         header("location: home.php");
     }
     else{
