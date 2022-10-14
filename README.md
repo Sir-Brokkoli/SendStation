@@ -4,6 +4,11 @@ The Sendstation project is a web application supporting a small climbing competi
 proximity area of Innsbruck. What started as a personal project to study php-programming as
 well as HTML, JavaScript and SQL soon became a serious thing.
 
+Right now the project is in a clean-up phase since most of the code was writen before my
+studies of software engineering. The main goal is to apply standard patterns to get a 
+scalable as well as well-adaptable software. Instead of using frameworks like Laravel the
+router- and MVC-pattern will be implemented by hand. 
+
 ## The project
 
 Essentially, the idea behind this project is to provide a supportive platform for a climbing
